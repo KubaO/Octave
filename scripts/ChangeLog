@@ -1,3 +1,8 @@
+2007-12-28  John W. Eaton  <jwe@octave.org>
+
+	* miscellaneous/edit.m: Use strcat instead of fullfile to add file
+	extensions.
+
 2007-12-28  Kai Habel  <kai.habel@gmx.de>
 
 	* plot/pcolor.m: Swap 1st and 2nd argument in call to meshgrid.
