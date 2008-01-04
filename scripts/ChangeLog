@@ -1,3 +1,7 @@
+2008-01-04  Thomas Treichl  <Thomas.Treichl@gmx.net>
+
+	* strings/strtrim.m: Doc fix.
+
 2008-01-02  John W. Eaton  <jwe@octave.org>
 
 	* plot/print.m: Correctly handle pbm terminal.
