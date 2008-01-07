@@ -1,3 +1,13 @@
+2008-01-07  John W. Eaton  <jwe@octave.org>
+
+	* src/pt-except.cc (tree_try_catch_command::eval):
+	Set Vdebug_on_error and Vdebug_on_warning to false while executing
+	try block.
+
+	* error.cc (Vdebug_on_error, Vdebug_on_warning): No longer static.
+	* error.h: Provide decls.
+
+
 2008-01-04  John Swensen  <jpswensen@comcast.net>
 
 	* debug.cc (bp_table::do_remove_all_breakpoints_in_file):
