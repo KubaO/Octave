@@ -1,8 +1,12 @@
+2008-01-10  Ben Abbott  <bpabbott@mac.com>
+
+	* polynomial/mpoles.m: Avoid cases where poles could be assigned
+	to more than one multiplicity group.
+
 2008-01-09  John W. Eaton  <jwe@octave.org>
 
 	* plot/drawnow.m: Fail if filename includes a directory part that
 	does not exist.
-
 
 2008-01-07  John W. Eaton  <jwe@octave.org>
 
