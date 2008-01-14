@@ -1,3 +1,10 @@
+2008-02-28  John W. Eaton  <jwe@octave.org>
+
+	* plot/__go_draw_axes__.m (get_fontname_and_size): Use strcmpi
+	instead of calling tolower on first arg.  Default font name is
+	Helvetica, not helvetica.  Don't downcase user-specified font name.
+	(__maybe_munge_text__): Fix typo.
+
 2008-02-25  Ryan Hinton  <rwh4s@virginia.edu>
 
 	* miscellaneous/unpack.m: Use "-f -" args for tar.
@@ -95,13 +102,6 @@
 
 	* plot/__go_draw_axes__.m (__do_enhanced_option__): New subfunction.
 	Use it to disable enhanced mode for individual labels and titles.
-
-2008-01-14  John W. Eaton  <jwe@octave.org>
-
-	* plot/__go_draw_axes__.m (get_fontname_and_size): Use strcmpi
-	instead of calling tolower on first arg.  Default font name is
-	Helvetica, not helvetica.  Don't downcase user-specified font name.
-	(__maybe_munge_text__): Fix typo.
 
 2008-01-10  Ben Abbott  <bpabbott@mac.com>
 
