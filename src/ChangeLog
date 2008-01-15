@@ -1,3 +1,8 @@
+2008-01-14  John W. Eaton  <jwe@octave.org>
+
+	* load-path.cc (load_path::do_initialize): Start with sys_path empty.
+	(maybe_add_path_elts): Omit path_sep_str if path is empty.
+
 2008-01-10  John W. Eaton  <jwe@octave.org>
 
 	* DLD-FUNCTIONS/fsolve.cc (Ffsolve): Doc fix.
