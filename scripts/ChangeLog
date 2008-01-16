@@ -1,3 +1,8 @@
+2008-01-16  John W. Eaton  <jwe@octave.org>
+
+	* plot/__go_draw_axes__.m (__do_enhanced_option__): New subfunction.
+	Use it to disable enhanced mode for individual labels and titles.
+
 2008-01-14  John W. Eaton  <jwe@octave.org>
 
 	* plot/__go_draw_axes__.m (get_fontname_and_size): Use strcmpi
