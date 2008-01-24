@@ -30,8 +30,11 @@ function y = trace (x)
     print_usage ();
   endif
 
-  [nr, nc] = size (x);
-  if (nr == 1 || nc == 1)
+  if (ndims (x) > 2)
+    error ("trace: only valid on 2-D objects");
+  elseif (isempty (x))
+    y = 0;
+  elseif (any (size (x) == 1))
     y = x(1);
   else
     y = sum (diag (x));
