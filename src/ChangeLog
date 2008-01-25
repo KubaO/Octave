@@ -1,3 +1,7 @@
+2008-01-24  Pascal Dupuis  <Pascal.Dupuis@worldonline.be>
+
+	* mxarray.h.in: Include <cstring>.
+
 2008-01-14  John W. Eaton  <jwe@octave.org>
 
 	* load-path.cc (load_path::do_initialize): Start with sys_path empty.
