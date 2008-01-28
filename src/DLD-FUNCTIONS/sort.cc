@@ -742,6 +742,27 @@ mx_sort_indexed (ArrayN<double> &m, int dim, sortmode mode)
 
 #else
 
+template class octave_sort<double>;
+template class vec_index<double>;
+template class octave_sort<vec_index<double> *>;
+
+#if !defined (CXX_NEW_FRIEND_TEMPLATE_DECL)
+static octave_value_list
+mx_sort (ArrayN<double> &m, int dim, sortmode mode);
+
+static octave_value_list
+mx_sort_indexed (ArrayN<double> &m, int dim, sortmode mode);
+#endif
+#endif
+
+#if !defined (CXX_NEW_FRIEND_TEMPLATE_DECL)
+static octave_value_list
+mx_sort_sparse (Sparse<double> &m, int dim, sortmode mode);
+
+static octave_value_list
+mx_sort_sparse_indexed (Sparse<double> &m, int dim, sortmode mode);
+#endif
+
 template <>
 bool
 ascending_compare (double a, double b)
@@ -769,27 +790,6 @@ descending_compare (vec_index<double> *a, vec_index<double> *b)
 {
   return (xisnan (a->vec) || (a->vec > b->vec));
 }
-
-template class octave_sort<double>;
-template class vec_index<double>;
-template class octave_sort<vec_index<double> *>;
-
-#if !defined (CXX_NEW_FRIEND_TEMPLATE_DECL)
-static octave_value_list
-mx_sort (ArrayN<double> &m, int dim, sortmode mode);
-
-static octave_value_list
-mx_sort_indexed (ArrayN<double> &m, int dim, sortmode mode);
-#endif
-#endif
-
-#if !defined (CXX_NEW_FRIEND_TEMPLATE_DECL)
-static octave_value_list
-mx_sort_sparse (Sparse<double> &m, int dim, sortmode mode);
-
-static octave_value_list
-mx_sort_sparse_indexed (Sparse<double> &m, int dim, sortmode mode);
-#endif
 
 // std::abs(Inf) returns NaN!!
 static inline double

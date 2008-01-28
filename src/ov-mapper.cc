@@ -1,7 +1,7 @@
 /*
 
 Copyright (C) 1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005,
-              2006, 2007 John W. Eaton
+              2006, 2007, 2008 John W. Eaton
 
 This file is part of Octave.
 
@@ -159,7 +159,8 @@ any_element_greater_than (const SparseMatrix& a, double val)
 	    for (octave_idx_type i = M.cidx(j); i < M.cidx (j+1); i++) \
 	      { \
 		OCTAVE_QUIT; \
-	        result.elem (M.ridx (i), j) = CONV (F (M.data(i))); \
+		/* Use data instead of elem for better performance.  */ \
+		result.data (M.ridx (i) + j * nr) = CONV (F (M.data(i))); \
 		\
 		if (error_state) \
 		  return retval; \

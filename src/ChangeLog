@@ -1,3 +1,13 @@
+2008-01-28  David Bateman  <dbateman@free.fr>
+
+	* ov-mapper.cc (SPARSE_MAPPER_LOOP_2): Use data method instead of
+	elem in the case where F(0) is non-zero.
+
+	* DLD-FUNCTIONS/sort.cc (ascending_compare, descending_compare):
+	Always instantiate the specialized double versions of these
+	functions so that the NaN values are correctly sorted in the
+	Sparse<double> sort.
+
 2008-01-24  Pascal Dupuis  <Pascal.Dupuis@worldonline.be>
 
 	* mxarray.h.in: Include <cstring>.
