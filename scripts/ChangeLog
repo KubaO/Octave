@@ -1,5 +1,8 @@
 2008-01-30  John W. Eaton  <jwe@octave.org>
 
+	* miscellaneous/edit.m: Use "## Created: DATE" instead of "initial
+	revision".
+
 	* plot/Makefile.in (SOURCES): Include __plt2sv__.m and
 	__plt2vs__.m in the list.
 
