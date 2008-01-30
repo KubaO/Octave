@@ -34,13 +34,23 @@ function s = deblank (s)
     print_usage ();
   endif
 
-  if (ischar (s))
+  char_arg = ischar (s);
 
-    k = find (! isspace (s) & s != "\0");
-    if (isempty (s) || isempty (k))
-      s = "";
-    else
-      s = s(:,1:ceil (max (k) / rows (s)));
+  if (char_arg || isnumeric (s))
+
+    if (! isempty (s))
+      if (char_arg)
+	k = find (! isspace (s) & s != "\0");
+      else
+	warning ("deblank: expecting character string argument")
+	k = find (s != 0);
+      endif
+
+      if (isempty (k))
+	s = resize (s, 0, 0);
+      else
+	s = s(:,1:ceil (max (k) / rows (s)));
+      endif
     endif
 
   elseif (iscell(s))
@@ -48,7 +58,7 @@ function s = deblank (s)
     s = cellfun (@deblank, s, "UniformOutput", false);
 
   else
-    error ("deblank: expecting string argument");
+    error ("deblank: expecting character string argument");
   endif
 
 endfunction
