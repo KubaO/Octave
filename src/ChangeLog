@@ -1,5 +1,9 @@
 2008-01-30  Thomas Weber  <thomas.weber.mail@gmail.com>
 
+	* variables.cc (Fclear): Doc fix.
+
+2008-01-30  Thomas Weber  <thomas.weber.mail@gmail.com>
+
 	* pager.cc (Fmore): Doc fix.
 
 2008-01-28  John W. Eaton  <jwe@octave.org>
