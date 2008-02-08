@@ -132,6 +132,12 @@ public:
 
   octave_value any (int dim = 0) const;
 
+  octave_value sort (octave_idx_type dim = 0, sortmode mode = UNDEFINED) const
+    { return array_value ().sort (dim, mode); }
+  octave_value sort (Array<octave_idx_type> &sidx, octave_idx_type dim = 0,
+		     sortmode mode = UNDEFINED) const
+    { return array_value ().sort (sidx, dim, mode); }
+
   bool is_real_type (void) const { return true; }
 
   bool is_double_type (void) const { return true; }
