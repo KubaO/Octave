@@ -2464,7 +2464,8 @@ image::properties::properties (const graphics_handle& mh,
   : base_properties (go_name, mh, p),
     xdata (Matrix ()),
     ydata (Matrix ()),
-    cdata (Matrix ())
+    cdata (Matrix ()),
+    cdatamapping (radio_values ("{scaled}|direct"))
 { }
 
 void
@@ -2490,6 +2491,8 @@ image::properties::set (const caseless_str& name,
     set_ydata (val);
   else if (name.compare ("cdata"))
     set_cdata (val);
+  else if (name.compare ("cdatamapping"))
+    set_cdatamapping (val);
   else
     {
       modified = false;
@@ -2513,6 +2516,7 @@ image::properties::get (void) const
   m.assign ("xdata", xdata);
   m.assign ("ydata", ydata);
   m.assign ("cdata", cdata);
+  m.assign ("cdatamapping", cdatamapping);
 
   return m;
 }
@@ -2538,6 +2542,8 @@ image::properties::get (const caseless_str& name) const
     retval = ydata;
   else if (name.compare ("cdata"))
     retval = cdata;
+  else if (name.compare ("cdatamapping"))
+    retval = cdatamapping;
   else
     warning ("get: invalid property `%s'", name.c_str ());
 
@@ -2552,6 +2558,7 @@ image::properties::factory_defaults (void)
   m["xdata"] = Matrix ();
   m["ydata"] = Matrix ();
   m["cdata"] = Matrix ();
+  m["cdatamapping"] = radio_property (radio_values ("{scaled}|direct"));
 
   return m;
 }
@@ -2567,6 +2574,7 @@ patch::properties::properties (const graphics_handle& mh,
     ydata (Matrix ()),
     zdata (Matrix ()),
     cdata (Matrix ()),
+    cdatamapping (radio_values ("{scaled}|direct")),
     faces (Matrix ()),
     vertices (Matrix ()),
     facecolor (radio_values ("{flat}|none|interp")),
@@ -2607,6 +2615,8 @@ patch::properties::set (const caseless_str& name,
     set_zdata (val);
   else if (name.compare ("cdata"))
     set_cdata (val);
+  else if (name.compare ("cdatamapping"))
+    set_cdatamapping (val);
   else if (name.compare ("faces"))
     set_faces (val);
   else if (name.compare ("vertices"))
@@ -2657,6 +2667,7 @@ patch::properties::get (void) const
   m.assign ("ydata", ydata);
   m.assign ("zdata", zdata);
   m.assign ("cdata", cdata);
+  m.assign ("cdatamapping", cdatamapping);
   m.assign ("faces", faces);
   m.assign ("vertices", vertices);
   m.assign ("facecolor", facecolor);
@@ -2697,6 +2708,8 @@ patch::properties::get (const caseless_str& name) const
     retval = zdata;
   else if (name.compare ("cdata"))
     retval = cdata;
+  else if (name.compare ("cdatamapping"))
+    retval = cdatamapping;
   else if (name.compare ("faces"))
     retval = faces;
   else if (name.compare ("vertices"))
@@ -2738,6 +2751,7 @@ patch::properties::factory_defaults (void)
   m["ydata"] = Matrix ();
   m["zdata"] = Matrix ();
   m["cdata"] = Matrix ();
+  m["cdatamapping"] = radio_property (radio_values ("{scaled}|direct"));
   m["faces"] = Matrix ();
   m["vertices"] = Matrix ();
   m["facecolor"] = color_property ();
@@ -2766,6 +2780,7 @@ surface::properties::properties (const graphics_handle& mh,
     ydata (Matrix ()),
     zdata (Matrix ()),
     cdata (Matrix ()),
+    cdatamapping (radio_values ("{scaled}|direct")),
     facecolor (radio_values ("{flat}|none|interp")),
     facealpha (1.0),
     edgecolor (color_values (0, 0, 0), radio_values ("flat|none|interp")),
@@ -2804,6 +2819,8 @@ surface::properties::set (const caseless_str& name,
     set_zdata (val);
   else if (name.compare ("cdata"))
     set_cdata (val);
+  else if (name.compare ("cdatamapping"))
+    set_cdatamapping (val);
   else if (name.compare ("facecolor"))
     set_facecolor (val);
   else if (name.compare ("facealpha"))
@@ -2850,6 +2867,7 @@ surface::properties::get (void) const
   m.assign ("ydata", ydata);
   m.assign ("zdata", zdata);
   m.assign ("cdata", cdata);
+  m.assign ("cdatamapping", cdatamapping);
   m.assign ("facecolor", facecolor);
   m.assign ("facealpha", facealpha);
   m.assign ("edgecolor", edgecolor);
@@ -2888,6 +2906,8 @@ surface::properties::get (const caseless_str& name) const
     retval = zdata;
   else if (name.compare ("cdata"))
     retval = cdata;
+  else if (name.compare ("cdatamapping"))
+    retval = cdatamapping;
   else if (name.compare ("facecolor"))
     retval = facecolor;
   else if (name.compare ("facealpha"))
@@ -2925,6 +2945,7 @@ surface::properties::factory_defaults (void)
   m["ydata"] = Matrix ();
   m["zdata"] = Matrix ();
   m["cdata"] = Matrix ();
+  m["cdatamapping"] = radio_property (radio_values ("{scaled}|direct"));
   m["facecolor"] = color_property ();
   m["facealpha"] = 1.0;
   m["edgecolor"] = color_property ("black");

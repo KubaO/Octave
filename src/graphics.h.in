@@ -738,6 +738,12 @@ public:
     return data_property ();
   }
 
+  virtual radio_property get_cdatamapping (void) const
+  {
+    error ("get: invalid property \"cdatamapping\"");
+    return radio_property ();
+  }
+
 protected:
   std::string tag;
   std::string type;
@@ -1027,6 +1033,12 @@ public:
   {
     const base_properties& props = get_properties ();
     return props.get_cdata ();
+  }
+
+  radio_property get_cdatamapping (void) const
+  {
+    const base_properties& props = get_properties ();
+    return props.get_cdatamapping ();
   }
 
 private:
@@ -1749,6 +1761,7 @@ public:
       data_property xdata l
       data_property ydata l
       data_property cdata l
+      radio_property cdatamapping a
     END_PROPERTIES
 
     static std::string go_name;
@@ -1844,6 +1857,7 @@ public:
       data_property ydata l
       data_property zdata l
       data_property cdata l
+      radio_property cdatamapping a
       octave_value faces
       octave_value vertices
       color_property facecolor a
@@ -1952,6 +1966,7 @@ public:
       data_property ydata l
       data_property zdata l
       data_property cdata l
+      radio_property cdatamapping a
       color_property facecolor a
       octave_value facealpha
       color_property edgecolor a
