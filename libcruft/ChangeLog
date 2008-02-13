@@ -1,3 +1,7 @@
+2008-02-12  John W. Eaton  <jwe@octave.org>
+
+	* lapack-xtra/xilaenv.f: New wrapper for Fortran function ilaenv.
+
 2007-12-21  John W. Eaton  <jwe@octave.org>
 
 	Version 3.0.0 released.
