@@ -1,3 +1,7 @@
+2008-02-15  John W. Eaton  <jwe@octave.org>
+
+	* configure.in (*-*-freebsd*, *-*-openbsd*): Don't set SH_LD.
+
 2007-12-21  John W. Eaton  <jwe@octave.org>
 
 	Version 3.0.0 released.
