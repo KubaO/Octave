@@ -1,3 +1,7 @@
+2008-05-22  David Bateman  <dbateman@free.fr>
+
+	* general/rem.m, general/mod.m: Treat integer types correctly.
+
 2008-04-29  David Bateman  <dbateman@free.fr>
 
 	pkg/pkg.m: Also set archprefix with the -local and -global options.

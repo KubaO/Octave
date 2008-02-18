@@ -43,13 +43,26 @@ function r = rem (x, y)
     error ("rem: argument sizes must agree");
   endif
 
-  ## Matlab allows complex arguments, but as far as I can tell, that's a
-  ## bunch of hooey.
-
   if (isreal (x) && isreal (y))
-    r = x - y .* fix (x ./ y);
+      if (isinteger(x) || isinteger(y))
+	if (isinteger (x))
+	  typ = class (x);
+	else
+	  typ = class (y);
+	endif
+	r = x - y .* cast (fix (double (x) ./ double (y)), typ);
+      else
+	r = x - y .* fix (x ./ y);
+      endif
   else
     error ("rem: complex arguments are not allowed");
   endif
 
+%!assert(rem (uint8([1, 2, 3; -1, -2, -3]), uint8 (2)), uint8([1, 0, 1; -1, 0, -1]));
+
+%!assert(uint8(rem ([1, 2, 3; -1, -2, -3], 2 * ones (2, 3))),uint8([1, 0, 1; -1, 0, -1]));
+
+%!error rem (uint(8),int8(5));
+
+%!error rem (uint8([1, 2]), uint8([3, 4, 5]));
 endfunction
