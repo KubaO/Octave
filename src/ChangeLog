@@ -1,3 +1,9 @@
+2008-02-21  John W. Eaton  <jwe@octave.org>
+
+	* DLD-FUNCTIONS/fsolve.cc (fsolve_user_jacobian):
+	Check dimensions of user-supplied Jacobian matrix.
+	(fsolve_user_function): Check for non-square systems.
+
 2008-02-12  David Bateman  <dbateman@free.fr?
 
 	* graphics.h.in: Implement the cdatamapping property in patch,
