@@ -1,3 +1,8 @@
+2008-02-26  John W. Eaton  <jwe@octave.org>
+
+	* DLD-FUNCTIONS/rand.cc (do_rand): Pass name of calling function
+	to octave_rand::state.
+
 2008-02-21  John W. Eaton  <jwe@octave.org>
 
 	* DLD-FUNCTIONS/fsolve.cc (fsolve_user_jacobian):
