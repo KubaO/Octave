@@ -2567,6 +2567,13 @@ ComplexMatrix::lssolve (const ComplexMatrix& b, octave_idx_type& info,
 	  if (std::real (work(0)) < lworkaround)
 	    work(0) = lworkaround;
 	}
+      else if (m >= n)
+	{
+	  octave_idx_type lworkaround = 2*m + m*nrhs;
+
+	  if (std::real (work(0)) < lworkaround)
+	    work(0) = lworkaround;
+	}
 
       if (f77_exception_encountered)
 	(*current_liboctave_error_handler) 

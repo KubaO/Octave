@@ -2176,6 +2176,14 @@ Matrix::lssolve (const Matrix& b, octave_idx_type& info,
 	  if (work(0) < lworkaround)
 	    work(0) = lworkaround;
 	}
+      else if (m >= n)
+	{
+	  octave_idx_type lworkaround
+	    = 12*n + 2*n*smlsiz + 8*n*nlvl + n*nrhs + (smlsiz+1)*(smlsiz+1);
+
+	  if (work(0) < lworkaround)
+	    work(0) = lworkaround;
+	}
 
       if (f77_exception_encountered)
 	(*current_liboctave_error_handler) 
