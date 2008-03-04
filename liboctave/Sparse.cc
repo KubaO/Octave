@@ -2151,6 +2151,8 @@ assign1 (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 	      OCTAVE_QUIT;
 
 	      octave_idx_type ii = lhs_idx.elem (i);
+	      if (i < n - 1 && lhs_idx.elem (i + 1) == ii)
+		continue;
 	      if (ii < lhs_len && c_lhs.elem(ii) != LT ())
 		new_nzmx--;
 	      if (rhs.elem(rhs_idx[i]) != RT ())
@@ -2263,6 +2265,7 @@ assign1 (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 	  RT scalar = rhs.elem (0);
 	  bool scalar_non_zero = (scalar != RT ());
 	  lhs_idx.sort (true);
+	  n = lhs_idx.length (n);
 
 	  // First count the number of non-zero elements
 	  if (scalar != RT ())
@@ -2294,6 +2297,12 @@ assign1 (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 
 	      while (j < n || i < nz)
 		{
+		  if (j < n - 1 && lhs_idx.elem (j + 1) == jj)
+		    {
+		      j++;
+		      jj = lhs_idx.elem (j);
+		      continue;
+		    }
 		  if (j == n || (i < nz && ii < jj))
 		    {
 		      tmp.xdata (kk) = c_lhs.data (i);
@@ -2336,6 +2345,12 @@ assign1 (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 
 	      while (j < n || i < nz)
 		{
+		  if (j < n - 1 && lhs_idx.elem (j + 1) == jj)
+		    {
+		      j++;
+		      jj = lhs_idx.elem (j);
+		      continue;
+		    }
 		  if (j == n || (i < nz && ii < jj))
 		    {
 		      while (ic <= ii)
@@ -2490,7 +2505,9 @@ assign (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 		  if (n > 0 && m > 0)
 		    {
 		      idx_i.sort (true);
+		      n = idx_i.length (n);
 		      idx_j.sort (true);
+		      m = idx_j.length (m);
 
 		      octave_idx_type max_row_idx = idx_i_is_colon ? rhs_nr : 
 			idx_i.max () + 1;
@@ -2753,6 +2770,14 @@ assign (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 				{
 				  if (iii < n && ii <= pp)
 				    {
+				      if (iii < n - 1 && 
+					  idx_i.elem (iii + 1) == ii)
+					{
+					  iii++;
+					  ii = idx_i.elem(iii);
+					  continue;
+					}
+
 				      RT rtmp = rhs.elem (rhs_idx_i[iii], 
 							  rhs_idx_j[jji]);
 				      if (rtmp != RT ())
@@ -2961,6 +2986,8 @@ assign (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 		      OCTAVE_QUIT;
 		      
 		      octave_idx_type ii = idx_i.elem (i);
+		      if (i < len - 1 && idx_i.elem (i + 1) == ii)
+			continue;
 		      if (ii < lhs_len && c_lhs.elem(ii) != LT ())
 			new_nzmx--;
 		      if (rhs.elem(rhs_idx[i]) != RT ())
@@ -3039,6 +3066,7 @@ assign (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 		  RT scalar = rhs.elem (0, 0);
 		  octave_idx_type new_nzmx = lhs_nz;
 		  idx_i.sort (true);
+		  len = idx_i.length (len);
 
 		  // First count the number of non-zero elements
 		  if (scalar != RT ())
@@ -3073,6 +3101,15 @@ assign (Sparse<LT>& lhs, const Sparse<RT>& rhs)
 
 		  while (j < len || i < lhs_nz)
 		    {
+		      if (j < len - 1 && idx_i.elem (j + 1) == jj)
+			{
+			  j++;
+			  jj = idx_i.elem (j);
+			  jr = jj % lhs_nr;
+			  jc = (jj - jr) / lhs_nr;
+			  continue;
+			}
+
 		      if (j == len || (i < lhs_nz && ii < jj))
 			{
 			  while (kc <= ic)
