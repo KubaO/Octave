@@ -83,16 +83,22 @@ function r = roots (v)
 
   if (nargin != 1 || min (size (v)) > 1)
     print_usage ();
+  elseif (any (isnan(v) | isinf(v)))
+    error ("roots: inputs must not contain Inf or NaN")
   endif
 
-  n = length (v);
-  v = reshape (v, 1, n);
+  n = numel (v);
+  v = v(:);
 
   ## If v = [ 0 ... 0 v(k+1) ... v(k+l) 0 ... 0 ], we can remove the
   ## leading k zeros and n - k - l roots of the polynomial are zero.
 
-  f = find (v);
-  m = max (size (f));
+  if (isempty (v))
+    f = v;
+  else
+    f = find (v ./ max (abs (v)));
+  endif
+  m = numel (f);
 
   if (m > 0 && n > 1)
     v = v(f(1):f(m));
