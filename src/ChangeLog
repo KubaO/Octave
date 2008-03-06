@@ -1,3 +1,12 @@
+2008-03-06  John W. Eaton  <jwe@octave.org>
+
+	* graphics.cc (line::properties::properties,
+	line::properties::factory:defaults, patch::properties::properties, 
+	patch::properties::factory:defaults,
+	surface::properties::properties,
+	surface::properties::factory:defaults):
+	Set markersize to 6 by default.
+
 2008-03-06  Alexander Barth  <barth.alexander@gmail.com>
 
 	* DLD-FUNCTIONS/__lin_interpn__.cc (lookup):
