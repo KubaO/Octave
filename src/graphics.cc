@@ -2128,7 +2128,7 @@ line::properties::properties (const graphics_handle& mh,
     marker ("none"),
     markeredgecolor ("auto"),
     markerfacecolor ("none"),
-    markersize (1),
+    markersize (6),
     keylabel (""),
     interpreter (radio_values ("{tex}|none|latex"))
 { }
@@ -2292,7 +2292,7 @@ line::properties::factory_defaults (void)
   m["marker"] = "none";
   m["markeredgecolor"] = "auto";
   m["markerfacecolor"] = "none";
-  m["markersize"] = 1;
+  m["markersize"] = 6;
   m["keylabel"] = "";
   m["interpreter"] = radio_property (radio_values ("{tex}|none|latex"));
 
@@ -2585,7 +2585,7 @@ patch::properties::properties (const graphics_handle& mh,
     marker ("none"),
     markeredgecolor ("auto"),
     markerfacecolor ("none"),
-    markersize (1),
+    markersize (6),
     keylabel (""),
     interpreter (radio_values ("{tex}|none|latex"))
 { }
@@ -2762,7 +2762,7 @@ patch::properties::factory_defaults (void)
   m["marker"] = "none";
   m["markeredgecolor"] = "auto";
   m["markerfacecolor"] = "none";
-  m["markersize"] = 1;
+  m["markersize"] = 6;
   m["keylabel"] = "";
   m["interpreter"] = radio_property (radio_values ("{tex}|none|latex"));
 
@@ -2789,7 +2789,7 @@ surface::properties::properties (const graphics_handle& mh,
     marker ("none"),
     markeredgecolor ("auto"),
     markerfacecolor ("none"),
-    markersize (1),
+    markersize (6),
     keylabel (""),
     interpreter (radio_values ("{tex}|none|latex"))
 { }
@@ -2954,7 +2954,7 @@ surface::properties::factory_defaults (void)
   m["marker"] = "none";
   m["markeredgecolor"] = "auto";
   m["markerfacecolor"] = "none";
-  m["markersize"] = 1;
+  m["markersize"] = 6;
   m["keylabel"] = "";
   m["interpreter"] = radio_property (radio_values ("{tex}|none|latex"));
 
