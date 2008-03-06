@@ -232,9 +232,6 @@
 %% test/octave.test/string/deblank-3.m
 %!error deblank ("foo", "bar");
 
-%% test/octave.test/string/deblank-4.m
-%!error deblank (1);
-
 %% test/octave.test/string/findstr-1.m
 %!assert((findstr ("abababa", "a") == [1, 3, 5, 7]
 %! && findstr ("abababa", "aba") == [1, 3, 5]

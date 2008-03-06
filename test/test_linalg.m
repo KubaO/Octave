@@ -27,9 +27,6 @@
 %% test/octave.test/linalg/cond-3.m
 %!error cond ();
 
-%% test/octave.test/linalg/cond-4.m
-%!error cond (1, 2);
-
 %% test/octave.test/linalg/det-1.m
 %!assert(det ([1, 2; 3, 4]) == -2);
 
