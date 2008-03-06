@@ -2,7 +2,7 @@
 
 	* plot/hist.m: Avoid temporaries.
 	Allow matrix arguments when number of bins > 30.
-	From Robert S. Mahurin <mahurin@fiver.phys.utk.edu>.
+	From Robert S. Mahurin <rob@utk.edu>.
 
 	* plot/__go_draw_axes__.m: Adjust markersize by a factor of 1/6.
 
