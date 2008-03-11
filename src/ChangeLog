@@ -1,5 +1,7 @@
 2008-03-10  John W. Eaton  <jwe@octave.org>
 
+	* mex.cc (mxCreateLogicalScalar): Argument is now mxLogical.
+
 	* mxarray.h.in (mxLogical): Use unsigned char instead of int.
 	From Antwerpen, G. (Gert) van <gert.vanantwerpen@tno.nl>.
 
