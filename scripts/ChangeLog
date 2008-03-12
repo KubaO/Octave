@@ -1,5 +1,8 @@
 2008-03-11  John W. Eaton  <jwe@octave.org>
 
+	* plot/__go_draw_axes__.m: Use get to access hidden properties.
+	Use strcmpi when comparing string properties.
+
 	* plot/ChangeLog: Handle axes linewidth property.
 
 	* plot/__go_draw_axes__.m (get_old_gnuplot_color): New subfunction.
