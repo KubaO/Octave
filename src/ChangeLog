@@ -1,5 +1,7 @@
 2008-03-11  John W. Eaton  <jwe@octave.org>
 
+	* graphics.cc, graphics.h.in (class axes): New property, linewidth.
+
 	* DLD-FUNCTIONS/eig.cc (Feig): Handle possible error from EIG.
 	* DLD-FUNCTIONS/qp.cc (qp, Fqp): Likewise.
 	* xpow.cc (xpow): Likewise.

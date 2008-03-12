@@ -1414,6 +1414,7 @@ public:
       octave_value zdir
       octave_value xaxislocation
       octave_value yaxislocation
+      octave_value linewidth
       octave_value view
       octave_value visible
       octave_value nextplot

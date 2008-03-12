@@ -1140,6 +1140,7 @@ axes::properties::properties (const graphics_handle& mh,
     zdir ("normal"),
     xaxislocation ("bottom"),
     yaxislocation ("left"),
+    linewidth (0.5),
     view (),
     visible ("on"),
     nextplot ("replace"),
@@ -1348,6 +1349,8 @@ axes::properties::set (const caseless_str& name, const octave_value& val)
     set_xaxislocation (val);
   else if (name.compare ("yaxislocation"))
     set_yaxislocation (val);
+  else if (name.compare ("linwdiwth"))
+    set_linewidth (val);
   else if (name.compare ("view"))
     set_view (val);
   else if (name.compare ("visible"))
@@ -1432,6 +1435,7 @@ axes::properties::set_defaults (base_graphics_object& obj,
   zdir = "normal";
   xaxislocation = "left";
   yaxislocation = "bottom";
+  linewidth = 0.5;
 
   Matrix tview (1, 2, 0.0);
   tview(1) = 90;
@@ -1558,6 +1562,7 @@ axes::properties::get (void) const
   m.assign ("zdir", zdir);
   m.assign ("xaxislocation", xaxislocation);
   m.assign ("yaxislocation", yaxislocation);
+  m.assign ("linewidth", linewidth);
   m.assign ("view", view);
   m.assign ("visible", visible);
   m.assign ("nextplot", nextplot);
@@ -1685,6 +1690,8 @@ axes::properties::get (const caseless_str& name) const
     retval = xaxislocation;
   else if (name.compare ("yaxislocation"))
     retval = yaxislocation;
+  else if (name.compare ("linewidth"))
+    retval = linewidth;
   else if (name.compare ("view"))
     retval = view;
   else if (name.compare ("visible"))
@@ -1794,6 +1801,7 @@ axes::properties::factory_defaults (void)
   m["zdir"] = "normal";
   m["xaxislocation"] = "bottom";
   m["yaxislocation"] = "left";
+  m["linewidth"] = 0.5;
 
   Matrix tview (1, 2, 0.0);
   tview(1) = 90;
