@@ -906,25 +906,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
                          data_idx, colorspec, obj.linewidth);
 		fputs(plot_stream,"set style increment user;\n");
               else
-		if (isequal (edgecol, [0,0,0]))
-		  typ = -1;
-		elseif (isequal (edgecol, [1,0,0]))
-		  typ = 1;
-		elseif (isequal (edgecol, [0,1,0]))
-		  typ = 2;
-		elseif (isequal (edgecol, [0,0,1]))
-		  typ = 3;
-		elseif (isequal (edgecol, [1,0,1]))
-		  typ = 4;
-		elseif (isequal (edgecol, [0,1,1]))
-		  typ = 5;
-		elseif (isequal (edgecol, [1,1,1]))
-		  typ = -1;
-		elseif (isequal (edgecol, [1,1,0]))
-		  typ = 7;
-		else
-		  typ = -1;
-		endif
+		typ = get_old_gnuplot_color (edgecol);
                 fprintf (plot_stream,
                          "set style line %d lt %d lw %f;\n",
                          data_idx, typ, obj.linewidth);
