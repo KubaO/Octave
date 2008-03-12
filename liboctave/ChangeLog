@@ -1,3 +1,7 @@
+2008-03-12  John W. Eaton  <jwe@octave.org>
+
+	* dMatrix.cc (Matrix::lssolve): One more xGELSD workspace fix.
+
 2008-03-07  John W. Eaton  <jwe@octave.org>
 
 	* idx-vector.cc (IDX_VEC_REP::idx_vector_rep (bool),
