@@ -7,6 +7,10 @@
 
 2008-03-11  Kai Habel  <kai.habel@gmx.de>
 
+        * plot/__go_draw_axes__.m: Plot surfaces in front of axes.
+	Allow plotting of uniform colored mesh plots with and
+	w/o hidden line removal.
+
 	* plot/__go_draw_axes__.m: If facecolor property of a surface is
 	"none", don't use pm3d mode and set linestyle correctly. 
 

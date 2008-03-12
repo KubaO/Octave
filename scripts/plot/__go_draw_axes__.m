@@ -867,7 +867,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 	      data{data_idx} = zz.';
 	    endif
 	    usingclause{data_idx} = "using ($1):($2):($3):($4)";
-	    ## fputs (plot_stream, "unset parametric;\n");
+            ## fputs (plot_stream, "unset parametric;\n");
 
 	    ## Interpolation does not work for flat surfaces (e.g. pcolor)
             ## and color mapping --> currently set empty.
@@ -880,17 +880,14 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 	    facecolor_none_or_white = (strncmp (obj.facecolor, "none", 4)
 				       || (isnumeric (obj.facecolor)
 					   && all (obj.facecolor == 1)));
-	    if (strncmp (obj.facecolor, "none", 4))
-	      hidden_removal = false;
-	    else
-	      if (isnan (hidden_removal))
-		hidden_removal = true;
-	      endif
-	    endif
+	    hidden_removal = false;
 	
             if (flat_interp_edge && facecolor_none_or_white)
 	      withclause{data_idx} = "with line palette";
 	      fputs (plot_stream, "unset pm3d\n");
+	      if (all (obj.facecolor == 1))
+                  hidden_removal = true;
+              endif
 	    elseif (facecolor_none_or_white)
 	      edgecol = obj.edgecolor;
 	      if (have_newer_gnuplot)
@@ -900,9 +897,14 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 		  colorspec = sprintf ("linecolor rgb \"#%02x%02x%02x\"",
 				 round (255*edgecol));
 		endif
+		if (all (obj.facecolor == 1))
+                  hidden_removal = true;
+                endif
+		fputs(plot_stream,"unset pm3d;\n");
                 fprintf (plot_stream,
                          "set style line %d %s lw %f;\n",
                          data_idx, colorspec, obj.linewidth);
+		fputs(plot_stream,"set style increment user;\n");
               else
 		if (isequal (edgecol, [0,0,0]))
 		  typ = -1;
@@ -928,7 +930,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
                          data_idx, typ, obj.linewidth);
 	      endif
 	      withclause{data_idx} = sprintf("with line linestyle %d", data_idx);
-	      fputs (plot_stream, "unset pm3d\n")
+	      fputs (plot_stream, "unset pm3d\n");
             endif
 
 	    if (have_newer_gnuplot)
