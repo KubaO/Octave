@@ -1,5 +1,7 @@
 2008-03-11  John W. Eaton  <jwe@octave.org>
 
+	* plot/ChangeLog: Handle axes linewidth property.
+
 	* plot/__go_draw_axes__.m (get_old_gnuplot_color): New subfunction.
 	Use it to replace repeated if/elseif blocks.
 

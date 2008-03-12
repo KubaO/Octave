@@ -579,7 +579,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 		       color = cmap(r, :);
 		     endif
 		   elseif (strncmp (obj.facecolor, "interp", 6))
-		     warning ("\"interp\" not supported, using 1st entry of cdata")
+		     warning ("\"interp\" not supported, using 1st entry of cdata");
 		     r = 1 + round ((size (cmap, 1) - 1) * ccol(1));
 		     r = max (1, min (r, size (cmap, 1)));
 		     color = cmap(r,:);
@@ -654,7 +654,7 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 		     color = cmap(r, :);
 		   endif
 		 elseif (strncmp (obj.edgecolor, "interp", 6))
-		   warning ("\"interp\" not supported, using 1st entry of cdata")
+		   warning ("\"interp\" not supported, using 1st entry of cdata");
 		   r = 1 + round ((size (cmap, 1) - 1) * ccol(1));
 		   r = max (1, min (r, size (cmap, 1)));
 		   color = cmap(r,:);
@@ -685,6 +685,16 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 	       endswitch
 	     else
 	       lt = "";
+	     endif
+
+	     if (isfield (obj, "linewidth"))
+	       if (have_newer_gnuplot)
+		 lw = sprintf("linewidth %f", obj.linewidth);
+	       else
+		 lw = sprintf("lw %f", obj.linewidth);
+	       endif
+	     else
+	       lw  = "";
 	     endif
 
 	     if (isfield (obj, "marker"))
@@ -761,12 +771,13 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 		 colorspec = sprintf ("lc rgb \"#%02x%02x%02x\"",
 				      round (255*color));
 	       endif
-	       withclause{data_idx} = sprintf ("with %s %s %s %s %s",
-					       style, pt, lt, ps, colorspec);
+	       withclause{data_idx} = sprintf ("with %s %s %s %s %s %s",
+					       style, lw, pt, lt, ps, 
+					       colorspec);
 	     else
 	       typ = get_old_gnuplot_color (color);
-	       withclause{data_idx} = sprintf ("with %s %s %s lt %d", 
-					       style, pt, ps, typ);
+	       withclause{data_idx} = sprintf ("with %s %s %s %s lt %d", 
+					       style, lw, pt, ps, typ);
 	     endif
 
 	     if (nd == 3)
@@ -1052,6 +1063,8 @@ function __go_draw_axes__ (h, plot_stream, enhanced, mono)
 
     if (strcmpi (axis_obj.visible, "off"))
       fputs (plot_stream, "unset border; unset tics\n");
+    else
+      fprintf (plot_stream, "set border lw %f;\n", axis_obj.linewidth);
     endif
 
     if (strcmpi (axis_obj.key, "on"))
@@ -1337,7 +1350,7 @@ function [style, typ, with] = do_linestyle_command (obj, idx, mono,
 
     if (isfield (obj, "markersize"))
       if (have_newer_gnuplot)
-	fprintf (plot_stream, " pointsize %f", obj.markersize /6);
+	fprintf (plot_stream, " pointsize %f", obj.markersize / 6);
       else
 	if (! strcmpi (style, "lines"))
 	  with = sprintf ("%s ps %f", with, obj.markersize / 6);
@@ -1490,7 +1503,7 @@ function do_tics_1 (ticmode, tics, labelmode, labels, color, ax,
 	endif
 	labels = regexprep(labels, "%", "%%");
 	for i = 1:ntics
-	  fprintf (plot_stream, " \"%s\" %g", labels{k++}, tics(i))
+	  fprintf (plot_stream, " \"%s\" %g", labels{k++}, tics(i));
 	  if (i < ntics)
 	    fputs (plot_stream, ", ");
 	  endif
