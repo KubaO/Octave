@@ -1,3 +1,8 @@
+2008-03-14  Kai Habel  <kai.habel@gmx.de>
+
+        * plot/__go_draw_axes__.m: Expicitly set gnuplot user
+        style to default to avoid wrong mesh color in some cases.
+
 2008-03-12  David Bateman  <dbateman@free.fr>
 
 	* geometry/griddata3.m: Use griddatan and not griddata
