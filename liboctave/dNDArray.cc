@@ -741,6 +741,9 @@ NDArray::max (ArrayN<octave_idx_type>& idx_arg, int dim) const
       idx_arg.elem (i) = xisnan (tmp_max) ? 0 : idx_j;
     }
 
+  result.chop_trailing_singletons ();
+  idx_arg.chop_trailing_singletons ();
+
   return result;
 }
 
@@ -815,6 +818,9 @@ NDArray::min (ArrayN<octave_idx_type>& idx_arg, int dim) const
       result.elem (i) = tmp_min;
       idx_arg.elem (i) = xisnan (tmp_min) ? 0 : idx_j;
     }
+
+  result.chop_trailing_singletons ();
+  idx_arg.chop_trailing_singletons ();
 
   return result;
 }
