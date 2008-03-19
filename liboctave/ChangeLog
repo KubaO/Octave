@@ -1,3 +1,8 @@
+2008-03-19  David Bateman  <dbateman@free.fr>
+
+	* Array.cc (assignN): If orig_empty allow assignment like
+	a(1:10,1)=1:10
+
 2008-03-18  David Bateman  <dbateman@free.fr>
 
 	* dNDArray.cc (NDArray::min, NDArraymax): chop trailing singletons.
