@@ -1,3 +1,7 @@
+2008-03-20  David Bateman  <dbateman@free.fr>
+
+	* general/rotdim.m: Ensure k is an integer scale.
+ 
 2008-03-19  Emil Lucretiu  <emil@la.mine.nu>
 
 	* signal/sinetone.m: Ensure integral number of samples.
