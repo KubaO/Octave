@@ -1,3 +1,8 @@
+2008-03-24  Carlo de Falco  <carlo.defalco@gmail.com>
+
+	* pkg/pkg.m: Handle 'describe' command.
+	(parse_pkg_idx, print_package_description): New subfunctions.
+	
 2008-03-20  David Bateman  <dbateman@free.fr>
 
 	* general/rotdim.m: Ensure k is an integer scale.
