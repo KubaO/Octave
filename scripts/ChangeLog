@@ -1,4 +1,9 @@
-2008-02-19  John W. Eaton  <jwe@octave.org>
+2008-03-24  Michael Goffioul  <michael.goffioul@gmail.com>
+
+	* pkg/pkg.m (pkg:configure_make): Make it work with recent changes in
+	isspace handling with cell arrays of strings.
+
+2008-03-24  John W. Eaton  <jwe@octave.org>
 
 	* pkg/pkg.m: Style fixes.
 
