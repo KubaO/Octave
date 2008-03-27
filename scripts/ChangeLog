@@ -1,3 +1,7 @@
+2008-03-27  John W. Eaton  <jwe@octave.org>
+
+	* plot/__axis_label__.m: Use name of caller in error message.
+
 2008-03-26  John W. Eaton  <jwe@octave.org>
 
 	* set/ismember.m: Set size of idx output correctly for empty args.
