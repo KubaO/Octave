@@ -1,3 +1,10 @@
+2008-03-26  John W. Eaton  <jwe@octave.org>
+
+	* set/ismember.m: Set size of idx output correctly for empty args.
+	New tests.
+
+	* general/logical.m: Correctly handle empty args.  New tests.
+
 2008-03-24  Thomas Weber  <thomas.weber.mail@gmail.com>
 
 	* pkg/pkg.m: Allow installation of already extracted packages.
