@@ -1,3 +1,8 @@
+2008-03-27  John W. Eaton  <jwe@octave.org>
+
+	* DLD-FUNCTIONS/max.cc: Rename from minmax.cc.
+	* Makefile.in (DLD_XSRC): Rename minmax.cc to max.cc.
+
 2008-03-08  Primozz Peterlin  <primozz.peterlin@gmail.com>
 
 	* variables.cc (Fexist): Doc fix.
