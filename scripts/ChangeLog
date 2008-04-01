@@ -1,3 +1,9 @@
+2008-03-31  David Bateman  <dbateman@free.fr>
+
+	* plot/__go_draw_axes__.m: Set the tick direction in the main call
+	the set tics rather than separately to avoid issues with multiple
+	ticks in plotyy.
+	
 2008-03-31  Dmitri A. Sergatskov  <dasergatskov@gmail.com>
 
 	* miscellaneous/run.m: Fix check for existence of file.
