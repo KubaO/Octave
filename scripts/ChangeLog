@@ -1,5 +1,8 @@
 2008-04-02  John W. Eaton  <jwe@octave.org>
 
+	* plot/Makefile.in (SOURCES): Add __plt2sv__.m and __plt2vs__.m to
+	the list.
+
 	* general/Makefile.in (SOURCES): Add runlength.m to the list.
 
 2008-04-01  Richard Bovey  <Richard.Bovey@baesystems.com>
