@@ -1402,6 +1402,8 @@ public:
       octave_value xticklabelmode
       octave_value yticklabelmode
       octave_value zticklabelmode
+      radio_property tickdir am
+      radio_property tickdirmode al
       color_property color a
       color_property xcolor
       color_property ycolor

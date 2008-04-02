@@ -1128,6 +1128,8 @@ axes::properties::properties (const graphics_handle& mh,
     xticklabelmode ("auto"),
     yticklabelmode ("auto"),
     zticklabelmode ("auto"),
+    tickdir (radio_values ("{in}|out")),
+    tickdirmode (radio_values ("{auto}|manual")),
     color (color_values (0, 0, 0), radio_values ("flat|none|interp")),
     xcolor (color_values (0, 0, 0)),
     ycolor (color_values (0, 0, 0)),
@@ -1325,6 +1327,10 @@ axes::properties::set (const caseless_str& name, const octave_value& val)
     set_yticklabelmode (val);
   else if (name.compare ("zticklabelmode"))
     set_zticklabelmode (val);
+  else if (name.compare ("tickdir"))
+    set_tickdir (val);
+  else if (name.compare ("tickdirmode"))
+    set_tickdirmode (val);
   else if (name.compare ("color"))
     set_color (val);
   else if (name.compare ("xcolor"))
@@ -1423,6 +1429,8 @@ axes::properties::set_defaults (base_graphics_object& obj,
   xticklabelmode = "auto";
   yticklabelmode = "auto";
   zticklabelmode = "auto";
+  tickdir = radio_property (radio_values ("{in}|out"));
+  tickdirmode = radio_property (radio_values ("{auto}|manual"));
   color = color_property (color_values (0, 0, 0), radio_values("flat|none|interp"));
   xcolor = color_property ("black");
   ycolor = color_property ("black");
@@ -1550,6 +1558,8 @@ axes::properties::get (void) const
   m.assign ("xticklabelmode", xticklabelmode);
   m.assign ("yticklabelmode", yticklabelmode);
   m.assign ("zticklabelmode", zticklabelmode);
+  m.assign ("tickdir", tickdir);
+  m.assign ("tickdirmode", tickdirmode);
   m.assign ("color", color);
   m.assign ("xcolor", xcolor);
   m.assign ("ycolor", ycolor);
@@ -1666,6 +1676,10 @@ axes::properties::get (const caseless_str& name) const
     retval = yticklabelmode;
   else if (name.compare ("zticklabelmode"))
     retval = zticklabelmode;
+  else if (name.compare ("tickdir"))
+    retval = tickdir;
+  else if (name.compare ("tickdirmode"))
+    retval = tickdirmode;
   else if (name.compare ("color"))
     retval = color;
   else if (name.compare ("xcolor"))
@@ -1789,6 +1803,8 @@ axes::properties::factory_defaults (void)
   m["xticklabelmode"] = "auto";
   m["yticklabelmode"] = "auto";
   m["zticklabelmode"] = "auto";
+  m["tickdir"] = radio_property (radio_values ("{in}|out"));
+  m["tickdirmode"] = radio_property (radio_values ("{auto}|manual"));
   m["color"] = color_property (color_values (0, 0, 0), radio_values("flat|none|interp"));
   m["xcolor"] = color_property ("black");
   m["ycolor"] = color_property ("black");
