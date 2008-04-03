@@ -1,3 +1,9 @@
+2008-04-03  Jaroslav Hajek <highegg@gmail.com>
+
+	* DLD-FUNCTIONS/sort.cc (xabs, ascending_compare, operator <,
+	descending_compare, operator >): Move definitions ahead of
+	#include "oct-sort.cc".
+
 2008-04-02  John W. Eaton  <jwe@octave.org>
 
 	* graphics.cc, graphics.h.in (class axes):

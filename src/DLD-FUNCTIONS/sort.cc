@@ -38,7 +38,6 @@ along with Octave; see the file COPYING.  If not, see
 #include "data-conv.h"
 #include "ov-cx-mat.h"
 #include "ov-cell.h"
-#include "oct-sort.cc"
 
 enum sortmode { UNDEFINED, ASCENDING, DESCENDING };
 
@@ -78,6 +77,47 @@ descending_compare (vec_index<T> *a, vec_index<T> *b)
 {
   return (a->vec > b->vec);
 }
+
+// std::abs(Inf) returns NaN!!
+static inline double
+xabs (const Complex& x)
+{
+  return (xisinf (x.real ()) || xisinf (x.imag ())) ? octave_Inf : abs (x);
+}
+
+template <>
+bool
+ascending_compare (Complex a, Complex b)
+{
+  return (xisnan (b) || (xabs (a) < xabs (b))
+	  || ((xabs (a) == xabs (b)) && (arg (a) < arg (b))));
+}
+
+bool
+operator < (const Complex& a, const Complex& b)
+{
+  return (xisnan (b) || (xabs (a) < xabs (b))
+	  || ((xabs (a) == xabs (b)) && (arg (a) < arg (b))));
+}
+
+template <>
+bool
+descending_compare (Complex a, Complex b)
+{
+  return (xisnan (a) || (xabs (a) > xabs (b))
+	  || ((xabs (a) == xabs (b)) && (arg (a) > arg (b))));
+}
+
+bool
+operator > (const Complex& a, const Complex& b)
+{
+  return (xisnan (a) || (xabs (a) > xabs (b))
+	  || ((xabs (a) == xabs (b)) && (arg (a) > arg (b))));
+}
+
+// This file must be included after the < and > operators are
+// defined to avoid errors with the Intel C++ compiler.
+#include "oct-sort.cc"
 
 template <class T>
 static octave_value
@@ -789,43 +829,6 @@ bool
 descending_compare (vec_index<double> *a, vec_index<double> *b)
 {
   return (xisnan (a->vec) || (a->vec > b->vec));
-}
-
-// std::abs(Inf) returns NaN!!
-static inline double
-xabs (const Complex& x)
-{
-  return (xisinf (x.real ()) || xisinf (x.imag ())) ? octave_Inf : abs (x);
-}
-
-template <>
-bool
-ascending_compare (Complex a, Complex b)
-{
-  return (xisnan (b) || (xabs (a) < xabs (b))
-	  || ((xabs (a) == xabs (b)) && (arg (a) < arg (b))));
-}
-
-bool
-operator < (const Complex& a, const Complex& b)
-{
-  return (xisnan (b) || (xabs (a) < xabs (b))
-	  || ((xabs (a) == xabs (b)) && (arg (a) < arg (b))));
-}
-
-template <>
-bool
-descending_compare (Complex a, Complex b)
-{
-  return (xisnan (a) || (xabs (a) > xabs (b))
-	  || ((xabs (a) == xabs (b)) && (arg (a) > arg (b))));
-}
-
-bool
-operator > (const Complex& a, const Complex& b)
-{
-  return (xisnan (a) || (xabs (a) > xabs (b))
-	  || ((xabs (a) == xabs (b)) && (arg (a) > arg (b))));
 }
 
 template <>
