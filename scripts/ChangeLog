@@ -1,3 +1,8 @@
+2008-04-03  David Bateman  <dbateman@free.fr>
+
+	* plot/__go_draw_axes__.m: Conditionally "set pm3d implict" for 2D
+	plot or 3D plots with more than one line.
+	
 2008-04-02  John W. Eaton  <jwe@octave.org>
 
 	* plot/Makefile.in (SOURCES): Add __plt2sv__.m and __plt2vs__.m to
