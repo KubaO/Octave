@@ -1,3 +1,8 @@
+2008-04-03  Rafael Laboissiere  <rafael@debian.org>
+
+	* interpreter/octave.1, interpreter/octave-bug.1:
+	Drop unknown LO macro.
+
 2008-03-19  Michael D. Godfrey  <godfrey@isl.stanford.edu>
 
 	* interpreter/plot.txi: Reorder symbol character table.
