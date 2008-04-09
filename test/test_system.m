@@ -377,7 +377,7 @@
 %!error <Invalid call to file_in_path.*> file_in_path ("foo", "bar", "baz", "ooka");
 
 %% test/octave.test/system/tilde_expand-1.m
-%!test
+%!testif HAVE_GETPWUID
 %! x = getpwuid (getuid ());
 %! assert((strcmp (x.dir, tilde_expand ("~"))
 %! && strcmp (x.dir, tilde_expand (sprintf ("~%s", x.name)))
@@ -390,7 +390,8 @@
 %!error <Invalid call to tilde_expand.*> tilde_expand ("str", 2);
 
 %% test/octave.test/system/getpgrp-1.m
-%!assert(getpgrp () > 0);
+%!testif HAVE_GETPGRP
+%! assert(getpgrp () > 0);
 
 %% test/octave.test/system/getpgrp-2.m
 %!error <... getpgrp> getpgrp (1);
@@ -402,7 +403,8 @@
 %!error <... getpid> getpid (1);
 
 %% test/octave.test/system/getppid-1.m
-%!assert(getppid () > 0);
+%!testif HAVE_GETPPID
+%! assert(getppid () > 0);
 
 %% test/octave.test/system/getppid-2.m
 %!error <... getppid> getppid (1);
@@ -471,7 +473,14 @@
 %! cd /
 %! d1 = pwd ();
 %! cd (xdir);
-%! assert("/", d1);
+%! if (ispc () && ! isunix ())
+%!   # should be a drive letter
+%!   assert(length (d1), 3);
+%!   assert(d1(2), ":");
+%!   assert(d1(3), "\\");
+%! else
+%!   assert("/", d1);
+%! endif
 %! assert(pwd(), xdir);
 
 %% test/octave.test/system/cd-2.m
@@ -484,7 +493,7 @@
 %!error ls (1);
 
 %% test/octave.test/system/getpwent-1.m
-%!test
+%!testif HAVE_GETPWENT
 %! s = getpwent ();
 %! endpwent (); 
 %! assert((isstruct (s)
@@ -500,7 +509,7 @@
 %!error <Invalid call to getpwent.*> getpwent (1);
 
 %% test/octave.test/system/getpwuid-1.m
-%!test
+%!testif HAVE_GETPWUID
 %! x = getpwent ();
 %! y = getpwuid (x.uid);
 %! endpwent (); 
@@ -513,7 +522,7 @@
 %!error <Invalid call to getpwuid.*> getpwuid (1, 2);
 
 %% test/octave.test/system/getpwnam-1.m
-%!test
+%!testif HAVE_GETPWNAM
 %! x = getpwent ();
 %! y = getpwnam (x.name);
 %! endpwent (); 
@@ -526,7 +535,7 @@
 %!error <Invalid call to getpwnam.*> getpwnam ("foo", 1);
 
 %% test/octave.test/system/setpwent-1.m
-%!test
+%!testif HAVE_SETPWENT
 %! x = getpwent ();
 %! setpwent ();
 %! y = getpwent ();
@@ -540,7 +549,7 @@
 %!error <Invalid call to endpwent.*> endpwent (1);
 
 %% test/octave.test/system/getgrent-1.m
-%!test
+%!testif HAVE_GETGRENT
 %! x = getgrent ();
 %! endgrent ();
 %! assert((isstruct (x)
@@ -553,7 +562,7 @@
 %!error <Invalid call to getgrent.*> getgrent (1);
 
 %% test/octave.test/system/getgrgid-1.m
-%!test
+%!testif HAVE_GETGRGID
 %! x = getgrent ();
 %! y = getgrgid (x.gid);
 %! endgrent ();
@@ -566,7 +575,7 @@
 %!error <Invalid call to getgrgid.*> getgrgid (1, 2);
 
 %% test/octave.test/system/getgrnam-1.m
-%!test
+%!testif HAVE_GETGRNAM
 %! x = getgrent ();
 %! y = getgrnam (x.name);
 %! endgrent ();
@@ -579,7 +588,7 @@
 %!error <Invalid call to getgrnam.*> getgrnam ("foo", 1);
 
 %% test/octave.test/system/setgrent-1.m
-%!test
+%!testif HAVE_SETGRENT
 %! x = getgrent ();
 %! setgrent ();
 %! y = getgrent ();
