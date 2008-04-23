@@ -1,3 +1,8 @@
+2008-04-23  John W. Eaton  <jwe@octave.org>
+
+	* DLD-FUNCTIONS/__qp__.cc (qp): Avoid bounds error when removing
+	constraint from active set.
+
 2008-04-21  John W. Eaton  <jwe@octave.org>
 
 	Version 3.0.1 released.
