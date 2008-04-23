@@ -1,3 +1,11 @@
+2008-04-21  John W. Eaton  <jwe@octave.org>
+
+	Version 3.0.1 released.
+
+	* version.h (OCTAVE_VERSION): Now 3.0.1.
+	(OCTAVE_RELEASE_DATE): Now 2008-04-21.
+	(OCTAVE_COPYRIGHT): Update year.
+
 2008-04-20  John W. Eaton  <jwe@octave.org>
 
 	* oct-stream.cc (octave_stream::read): Allow single data type

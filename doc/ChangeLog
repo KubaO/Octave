@@ -1,3 +1,7 @@
+2008-04-21  John W. Eaton  <jwe@octave.org>
+
+	Version 3.0.1 released.
+
 2008-04-03  Rafael Laboissiere  <rafael@debian.org>
 
 	* interpreter/octave.1, interpreter/octave-bug.1:

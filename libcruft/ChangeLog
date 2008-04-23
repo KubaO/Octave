@@ -1,3 +1,7 @@
+2008-04-21  John W. Eaton  <jwe@octave.org>
+
+	Version 3.0.1 released.
+
 2008-04-04  John W. Eaton  <jwe@octave.org>
 
 	* blas/zdrot.f, odepack/dlsode.f, odepack/ewset.f,
