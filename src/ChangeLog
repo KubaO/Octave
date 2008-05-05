@@ -1,3 +1,8 @@
+2008-05-04  John W. Eaton  <jwe@octave.org>
+
+	* ov-fcn-handle.cc (Ffunctions): Pass octave_value object instead
+	of Cell in structure field assignment.
+
 2008-04-23  John W. Eaton  <jwe@octave.org>
 
 	* DLD-FUNCTIONS/__qp__.cc (qp): Avoid bounds error when removing
