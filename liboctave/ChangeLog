@@ -1,3 +1,7 @@
+2008-05-05  Rafael Laboissiere  <rafael@debian.org>
+
+	* oct-rl-edit.c (octave_read_init_file): Simply call rl_read_init_file.
+
 2008-04-24  Michael Goffioul  <michael.goffioul@gmail.com>
 
 	* lo-sysdep.cc (octave_popen2): Don't set PIPE_NOWAIT for parentWrite.
