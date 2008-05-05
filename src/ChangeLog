@@ -1,3 +1,7 @@
+2008-05-05  David Bateman  <dbateman@free.fr>
+
+	* sysdep.cc (Fputenv): Allow single arg. Alias to setenv.
+
 2008-05-04  John W. Eaton  <jwe@octave.org>
 
 	* ov-fcn-handle.cc (Ffunctions): Pass octave_value object instead
