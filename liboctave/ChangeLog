@@ -1,3 +1,9 @@
+2008-05-19  David Bateman  <dbateman@free.fr>
+
+	* idx-vector.cc (IDX_VEC_REP::idx_vector_rep (const boolNDArray&)):
+	If len is zero size the index vector in the same manner as if len
+	is not zero.
+
 2008-05-11  John W. Eaton  <jwe@octave.org>
 
 	* intNDArray.cc (intNDArray<T>::any (int)): Use != for comparison.
