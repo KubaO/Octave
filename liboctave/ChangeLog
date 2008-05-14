@@ -1,5 +1,8 @@
 2008-05-19  David Bateman  <dbateman@free.fr>
 
+	* dSparse.cc: Replace some DGBCON with GPBCON where they are
+	incorrectly used.
+
 	* idx-vector.cc (IDX_VEC_REP::idx_vector_rep (const boolNDArray&)):
 	If len is zero size the index vector in the same manner as if len
 	is not zero.
