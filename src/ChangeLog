@@ -1,3 +1,8 @@
+2008-05-20  Kim Hansen  <kimhanse@gmail.com>
+
+	* load-path.cc (load_path::do_initialize):
+	Include separator when appending sys_path.
+
 2008-09-09  David Bateman  <dbateman@free.fr>
 
 	* DLD-FUNCTIONS/regexp.cc (octregexp_list): Distinguish between
