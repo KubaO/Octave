@@ -1,3 +1,8 @@
+2008-06-02  Kim Hansen  <kimhanse@gmail.com>
+
+	* strings/mat2str.m: Change is_complex to iscomplex, add tests, add
+	missing ;
+
 2008-06-02  John W. Eaton  <jwe@octave.org>
 
 	* linear-algebra/cond.m, miscellaneous/news.m,
@@ -1295,7 +1300,7 @@
 	* testfun/test.m: In error/warning blocks test for an error before
 	a warning to avoid unexpected failures.
 
-2007-10-15  Kim Hansen  i<kimhanse@gmail.com>
+2007-10-15  Kim Hansen  <kimhanse@gmail.com>
 
 	* testfun/assert.m: Correct documentation of absolution versus 
 	relative error tolerance and add tests.
