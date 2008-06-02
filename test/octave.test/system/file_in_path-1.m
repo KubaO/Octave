@@ -1,1 +1,1 @@
-isstr (file_in_path (LOADPATH, "date.m"))
+ischar (file_in_path (LOADPATH, "date.m"))

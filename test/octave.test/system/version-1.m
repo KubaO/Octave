@@ -1,1 +1,1 @@
-isstr (version ()) && strcmp (version (), OCTAVE_VERSION)
+ischar (version ()) && strcmp (version (), OCTAVE_VERSION)

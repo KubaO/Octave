@@ -1,1 +1,1 @@
-isstr (tmpnam ())
+ischar (tmpnam ())

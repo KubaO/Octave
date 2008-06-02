@@ -1,1 +1,1 @@
-isstr (pwd ())
+ischar (pwd ())

@@ -1,3 +1,13 @@
+2008-06-02  John W. Eaton  <jwe@octave.org>
+
+	* test_io.m, test_system.m, octave.test/io/sprintf-1.m,
+	octave.test/io/sscanf-1.m, octave.test/io/tmpnam-1.m,
+	octave.test/system/computer-1.m,
+	octave.test/system/file_in_path-1.m, octave.test/system/lstat-1.m,
+	octave.test/system/pwd-1.m, octave.test/system/stat-1.m,
+	octave.test/system/strftime-1.m, octave.test/system/version-1.m:
+	Call ischar instead of isstr.
+
 2008-04-21  John W. Eaton  <jwe@octave.org>
 
 	Version 3.0.1 released.

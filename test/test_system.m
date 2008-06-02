@@ -97,11 +97,11 @@
 %!error asctime (1, 2);
 
 %% test/octave.test/system/strftime-1.m
-%!assert((isstr (strftime ("%%%n%t%H%I%k%l", localtime (time ())))
-%! && isstr (strftime ("%M%p%r%R%s%S%T", localtime (time ())))
-%! && isstr (strftime ("%X%Z%z%a%A%b%B", localtime (time ())))
-%! && isstr (strftime ("%c%C%d%e%D%h%j", localtime (time ())))
-%! && isstr (strftime ("%m%U%w%W%x%y%Y", localtime (time ())))));
+%!assert((ischar (strftime ("%%%n%t%H%I%k%l", localtime (time ())))
+%! && ischar (strftime ("%M%p%r%R%s%S%T", localtime (time ())))
+%! && ischar (strftime ("%X%Z%z%a%A%b%B", localtime (time ())))
+%! && ischar (strftime ("%c%C%d%e%D%h%j", localtime (time ())))
+%! && ischar (strftime ("%m%U%w%W%x%y%Y", localtime (time ())))));
 
 %% test/octave.test/system/strftime-2.m
 %!error <Invalid call to strftime.*> strftime ();
@@ -309,7 +309,7 @@
 %! && struct_contains (s, "atime")
 %! && struct_contains (s, "mtime")
 %! && struct_contains (s, "ctime")
-%! && isstr (msg)));
+%! && ischar (msg)));
 
 %% test/octave.test/system/stat-2.m
 %!error <Invalid call to stat.*> stat ();
@@ -332,7 +332,7 @@
 %! && struct_contains (s, "atime")
 %! && struct_contains (s, "mtime")
 %! && struct_contains (s, "ctime")
-%! && isstr (msg)));
+%! && ischar (msg)));
 
 %% test/octave.test/system/lstat-2.m
 %!error <Invalid call to lstat.*> lstat ();
@@ -365,7 +365,7 @@
 %!error <Invalid call to fnmatch.*> fnmatch ("foo", "bar", 3);
 
 %% test/octave.test/system/file_in_path-1.m
-%!assert(isstr (file_in_path (path (), "date.m")));
+%!assert(ischar (file_in_path (path (), "date.m")));
 
 %% test/octave.test/system/file_in_path-2.m
 %!error <invalid option> file_in_path ("foo", "bar", 1);
@@ -487,7 +487,7 @@
 %!error cd (1);
 
 %% test/octave.test/system/pwd-1.m
-%!assert(isstr (pwd ()));
+%!assert(ischar (pwd ()));
 
 %% test/octave.test/system/ls-1.m
 %!error ls (1);
@@ -602,7 +602,7 @@
 %!error <Invalid call to endgrent.*> endgrent (1);
 
 %% test/octave.test/system/computer-1.m
-%!assert((isstr (computer ())
+%!assert((ischar (computer ())
 %! && computer () == octave_config_info ("canonical_host_type")));
 
 %% test/octave.test/system/computer-2.m
@@ -612,7 +612,7 @@
 %!assert(isieee () == 1 || isieee () == 0);
 
 %% test/octave.test/system/version-1.m
-%!assert(isstr (version ()) && strcmp (version (), OCTAVE_VERSION));
+%!assert(ischar (version ()) && strcmp (version (), OCTAVE_VERSION));
 
 %% test/octave.test/system/version-2.m
 %!warning version (1);

@@ -11,4 +11,4 @@
  && struct_contains (s, "atime")
  && struct_contains (s, "mtime")
  && struct_contains (s, "ctime")
- && isstr (msg))
+ && ischar (msg))
