@@ -1,3 +1,7 @@
+2008-06-03  Jaroslav Hajek <highegg@gmail.com>
+
+	* load-save.cc (Fload): Fix "-7" option.
+
 2008-06-02  Jaroslav Hajek <highegg@gmail.com>
 
 	* ov-cell.cc (Fcellstr): For compatibility with Matlab, return {''}
