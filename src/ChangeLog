@@ -1,3 +1,7 @@
+2008-06-10  John W. Eaton  <jwe@octave.org>
+
+	* mexproto.h (mxCreateLogicalScalar): Declar arg as mxLogical, not int.
+
 2008-06-03  Jaroslav Hajek <highegg@gmail.com>
 
 	* load-save.cc (Fload): Fix "-7" option.
