@@ -1,3 +1,9 @@
+2008-06-11  John W. Eaton  <jwe@octave.org>
+
+	* general/rat.m: Properly initialize steps when all elements of
+	input array are integers.  Append spaces as necessary when
+	building  character array.
+
 2008-06-04  Bill Denney  <bill@denney.ws>
 
 	* time/weekday.m: Allow vector inputs and speed up.
