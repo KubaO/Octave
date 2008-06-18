@@ -1,3 +1,9 @@
+2008-06-20  Jaroslav Hajek <highegg@gmail.com>
+
+	* DLD-FUNCTIONS/regexp.cc (octregexp_list): Make "once" an output
+	argument.
+	(octregexp): Do not use cell arrays when "once" is requested.
+
 2008-06-10  John W. Eaton  <jwe@octave.org>
 
 	* mexproto.h (mxCreateLogicalScalar): Declar arg as mxLogical, not int.
