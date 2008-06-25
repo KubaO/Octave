@@ -1,3 +1,7 @@
+2008-06-25  David Bateman  <dbateman@free.fr>
+
+	* pr-output.cc (Frats): Print usage if nargin == 0.
+	
 2008-06-20  Jaroslav Hajek <highegg@gmail.com>
 
 	* DLD-FUNCTIONS/regexp.cc (octregexp_list): Make "once" an output
