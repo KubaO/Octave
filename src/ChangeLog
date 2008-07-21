@@ -3,6 +3,12 @@
 	* dirfns.cc (Fmkdir): If directory already exists, return status =
 	true, but also set error message.
 
+2008-07-21  John W. Eaton  <jwe@octave.org>
+
+	* OPERATORS/op-struct.cc: Define concatenation operators for
+	struct/matrix concatenation (valid if matrix is empty).
+	* OPERATORS/op-cell.cc (install_cell_ops): Likewise, for cells.
+
 2008-06-25  David Bateman  <dbateman@free.fr>
 
 	* pr-output.cc (Frats): Print usage if nargin == 0.
