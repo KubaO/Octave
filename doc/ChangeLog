@@ -1,3 +1,8 @@
+2008-07-28  David Bateman  <dbateman@free.fr>
+
+	* interpreter/plot.txi: Clarify the description of OuterPosition
+	axes property.
+
 2008-08-14  Jaroslav Hajek <highegg@gmail.com>
 
 	Version 3.0.2 released.
