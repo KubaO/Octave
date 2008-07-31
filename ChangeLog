@@ -1,3 +1,7 @@
+2008-07-31  John W. Eaton  <jwe@octave.org>
+
+	* octMakefile.in (DISTFILES): Add "missing" to the list.
+
 2008-07-10  John W. Eaton  <jwe@octave.org>
 
 	* octMakefile.in (DIRS_TO_MAKE): Delete $(localfcnfilepath) and
