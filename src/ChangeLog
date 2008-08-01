@@ -1,3 +1,9 @@
+2008-08-01  Francesco Potorti <Potorti@isti.cnr.it>
+
+	* graphics.cc (axes::properties::properties,
+	axes::properties::set_defaults, axes::properties::factory_defaults):
+	Exchange xaxislocation and yaxislocation property values.
+
 2008-07-28  John W. Eaton  <jwe@octave.org>
 
 	* error.cc (Flasterror, Flasterr): Unwind-protect error_state.

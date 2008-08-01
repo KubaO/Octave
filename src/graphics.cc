@@ -1140,8 +1140,8 @@ axes::properties::properties (const graphics_handle& mh,
     xdir ("normal"),
     ydir ("normal"),
     zdir ("normal"),
-    xaxislocation ("bottom"),
-    yaxislocation ("left"),
+    xaxislocation ("left"),
+    yaxislocation ("bottom"),
     linewidth (0.5),
     view (),
     visible ("on"),
@@ -1441,8 +1441,8 @@ axes::properties::set_defaults (base_graphics_object& obj,
   xdir = "normal";
   ydir = "normal";
   zdir = "normal";
-  xaxislocation = "left";
-  yaxislocation = "bottom";
+  xaxislocation = "bottom";
+  yaxislocation = "left";
   linewidth = 0.5;
 
   Matrix tview (1, 2, 0.0);
@@ -1815,8 +1815,8 @@ axes::properties::factory_defaults (void)
   m["xdir"] = "normal";
   m["ydir"] = "normal";
   m["zdir"] = "normal";
-  m["xaxislocation"] = "bottom";
-  m["yaxislocation"] = "left";
+  m["xaxislocation"] = "left";
+  m["yaxislocation"] = "bottom";
   m["linewidth"] = 0.5;
 
   Matrix tview (1, 2, 0.0);
