@@ -142,7 +142,7 @@ endfunction
 %!# test with TAB, LF, VT, FF, and CR
 %!test
 %! for ch = "\t\n\v\f\r"
-%!   [t, r] = strtok (cstrcat ("beg", ch, "end"));
+%!   [t, r] = strtok (strcat ("beg", ch, "end"));
 %!   assert (t, "beg");
-%!   assert (r, cstrcat (ch, "end"))
+%!   assert (r, strcat (ch, "end"))
 %! endfor
