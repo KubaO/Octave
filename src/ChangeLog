@@ -1,3 +1,7 @@
+2008-08-08  Tatsuro MATSUOKA  <tmacchant@yahoo.co.jp>
+
+	* A patch fntests for rand.cc for octave for windows (cygwin, mingw ,msvc)
+
 2008-08-01  Francesco Potorti <Potorti@isti.cnr.it>
 
 	* graphics.cc (axes::properties::properties,
