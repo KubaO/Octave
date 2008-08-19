@@ -1,3 +1,7 @@
+2008-08-19  Jaroslav Hajek  <highegg@m61s04>
+
+	* DLD-FUNCTIONS/rand.cc (Frandp): Fix typo in a test.
+
 2008-08-12  John W. Eaton  <jwe@octave.org>
 
 	* ov-struct.cc (octave_struct::subsref): Don't allow resizing for

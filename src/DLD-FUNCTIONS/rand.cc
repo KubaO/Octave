@@ -950,7 +950,7 @@ D 50 p1284, 1994\n\
 %!test
 %! % Test fixed state
 %! randp("seed",1);
-%! assert(randp(1e9,1,6),[1000006208 1000012224 999981120 999963520 999963072 999981440]],1e-6))
+%! assert(randp(1e9,1,6),[1000006208 1000012224 999981120 999963520 999963072 999981440],1e-6))
 %!test
 %! if (__random_statistical_tests__)
 %!   % statistical tests may fail occasionally.
