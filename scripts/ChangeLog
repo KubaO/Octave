@@ -1,3 +1,7 @@
+2008-08-19  Jaroslav Hajek <highegg@gmail.com>
+
+	Version 3.0.2 released.
+
 2008-08-08  Jaroslav Hajek <highegg@gmail.com>
 
 	* strings/strtok.m: replace cstrcat -> strcat in the tests.

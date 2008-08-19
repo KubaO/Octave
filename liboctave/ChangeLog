@@ -1,3 +1,7 @@
+2008-08-14  Jaroslav Hajek <highegg@gmail.com>
+
+	Version 3.0.2 released.
+
 2008-08-12  Jaroslav Hajek <highegg@gmail.com>
 
 	* lo-ieee.cc (octave_ieee_init): Try to ensure that octave_NaN is
