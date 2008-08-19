@@ -746,6 +746,28 @@ if @var{name} is not found.\n\
 	    error ("errno: expecting integer argument");
 	}
     }
+
+  return retval;
+}
+
+// See if there is a directory called "name" in the path and if it
+// contains a Contents.m file return the full path to this file.
+
+std::string
+contents_file_in_path (const std::string& dir)
+{
+  std::string retval;
+
+  if (dir.length () > 0)
+    {
+      std::string tcontents = file_ops::concat (load_path::find_dir (dir), 
+						std::string ("Contents.m"));
+
+      file_stat fs (tcontents);
+
+      if (fs.exists ())
+	retval = octave_env::make_absolute (tcontents, octave_env::getcwd ());
+    }
   else if (nargin == 0)
     retval = octave_errno::get ();
   else
