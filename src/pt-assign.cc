@@ -44,6 +44,9 @@ along with Octave; see the file COPYING.  If not, see
 
 // Simple assignment expressions.
 
+// FIXME -- the following variable and the function that uses it
+// should be removed from some future version of Octave.
+
 static const char *former_built_in_variables[] =
 {
   "DEFAULT_EXEC_PATH",
@@ -158,10 +161,7 @@ tree_simple_assignment::tree_simple_assignment
   (tree_expression *le, tree_expression *re,
    bool plhs, int l, int c, octave_value::assign_op t)
     : tree_expression (l, c), lhs (le), rhs (re), preserve (plhs), etype (t)
-{
-  if (lhs)
-    maybe_warn_former_built_in_variable (lhs->name ());
-}
+      first_execution (true) { }
 
 tree_simple_assignment::~tree_simple_assignment (void)
 {
@@ -193,6 +193,9 @@ octave_value
 tree_simple_assignment::rvalue (void)
 {
   octave_value retval;
+
+  if (first_execution && lhs)
+    maybe_warn_former_built_in_variable (lhs->name ());
 
   if (error_state)
     return retval;
@@ -258,6 +261,8 @@ tree_simple_assignment::rvalue (void)
 	eval_error ();
     }
 
+  first_execution = false;
+
   return retval;
 }
 
@@ -303,15 +308,7 @@ tree_multi_assignment::tree_multi_assignment
   (tree_argument_list *lst, tree_expression *r,
    bool plhs, int l, int c, octave_value::assign_op t)
     : tree_expression (l, c), lhs (lst), rhs (r), preserve (plhs), etype (t)
-{
-  for (tree_argument_list::iterator p = lhs->begin (); p != lhs->end (); p++)
-    {
-      tree_expression *lhs_expr = *p;
-
-      if (lhs_expr)
-	maybe_warn_former_built_in_variable (lhs_expr->name ());
-    }
-}
+      first_execution (true) { }
 
 tree_multi_assignment::~tree_multi_assignment (void)
 {
@@ -344,6 +341,17 @@ tree_multi_assignment::rvalue (int)
 
   if (error_state)
     return retval;
+
+  if (first_execution)
+    {
+      for (tree_argument_list::iterator p = lhs->begin (); p != lhs->end (); p++)
+        {
+          tree_expression *lhs_expr = *p;
+
+          if (lhs_expr)
+            maybe_warn_former_built_in_variable (lhs_expr->name ());
+        }
+    }
 
   if (rhs)
     {
@@ -485,6 +493,8 @@ tree_multi_assignment::rvalue (int)
     }
   else
     eval_error ();
+
+  first_execution = false;
 
   return retval;
 }
