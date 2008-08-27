@@ -1,3 +1,8 @@
+2008-08-27  Jaroslav Hajek  <highegg@gmail.com>
+
+	* DLD-FUNCTIONS/__glpk__.cc (F__glpk__): Initialize output vectors 
+	by NA value.
+
 2008-05-20  Thomas Weber  <thomas.weber.mail@gmail.com>
 
 	* DLD-FUNCTIONS/rand.cc: Doc fix.
