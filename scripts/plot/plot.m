@@ -106,9 +106,6 @@
 ## @item .
 ## Set dots plot style.
 ##
-## @item ^
-## Set impulses plot style.
-##
 ## @item L
 ## Set steps plot style.
 ##
@@ -133,6 +130,7 @@
 ## @itemx *
 ## @itemx o
 ## @itemx x
+## @itemx ^
 ## Used in combination with the points or linespoints styles, set the point
 ## style.
 ## @end table
