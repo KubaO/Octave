@@ -1,3 +1,8 @@
+2008-09-10  John W. Eaton  <jwe@octave.org>
+
+	* octave.cc (octave_main): Make all command-line arguments
+	available to startup scripts and PKG_ADD files.
+
 2008-05-20  Kim Hansen  <kimhanse@gmail.com>
 
 	* load-path.cc (load_path::do_initialize):
