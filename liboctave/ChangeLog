@@ -1,3 +1,8 @@
+2008-09-12  Jaroslav Hajek  <highegg@gmail.com>
+
+	* oct-inttypes.h (pow (const octave_int<T>&, const octave_int<T>&)): 
+	Handle negative exponent correctly.
+
 2008-08-14  Jaroslav Hajek <highegg@gmail.com>
 
 	Version 3.0.2 released.
