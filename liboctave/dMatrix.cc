@@ -2601,6 +2601,22 @@ Matrix::expm (void) const
       iperm(swapidx) = tmp;
     }
 
+  // construct inverse balancing permutation vector
+  for (octave_idx_type i = 0; i < nc; i++)
+    invpvec(iperm(i)) = i;     // Thanks to R. A. Lippert for this method
+
+  OCTAVE_QUIT;
+ 
+  tmpMat = retval;
+  for (octave_idx_type i = 0; i < nc; i++)
+    for (octave_idx_type j = 0; j < nc; j++)
+      retval(i,j) = tmpMat(invpvec(i),invpvec(j));
+
+  OCTAVE_QUIT;
+
+  for (octave_idx_type i = 0; i < nc; i++)
+    iperm(i) = i;  // identity permutation
+
   // trailing permutations must be done in reverse order
   for (octave_idx_type i = nc - 1; i >= ihi; i--)
     {

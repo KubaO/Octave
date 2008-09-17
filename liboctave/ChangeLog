@@ -1,3 +1,8 @@
+2008-01-18  Marco Caliari  <marco.caliari@univr.it>
+
+	* dMatrix.cc (Matrix::expm): Correctly perform reverse permutation.
+	* CMatrix.cc (ComplexMatrix::expm): Likewise.
+
 2008-09-12  Jaroslav Hajek  <highegg@gmail.com>
 
 	* oct-inttypes.h (pow (const octave_int<T>&, const octave_int<T>&)): 
