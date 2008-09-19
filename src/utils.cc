@@ -746,6 +746,10 @@ if @var{name} is not found.\n\
 	    error ("errno: expecting integer argument");
 	}
     }
+  else if (nargin == 0)
+    retval = octave_errno::get ();
+  else
+    print_usage ();
 
   return retval;
 }
@@ -768,10 +772,6 @@ contents_file_in_path (const std::string& dir)
       if (fs.exists ())
 	retval = octave_env::make_absolute (tcontents, octave_env::getcwd ());
     }
-  else if (nargin == 0)
-    retval = octave_errno::get ();
-  else
-    print_usage ();
 
   return retval;
 }

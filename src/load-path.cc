@@ -798,7 +798,7 @@ load_path::do_find_dir (const std::string& dir) const
 {
   std::string retval;
 
-  if (dir.find_first_of (file_ops::dir_sep_chars ()) != std::string::npos
+  if (dir.find_first_of (file_ops::dir_sep_chars) != std::string::npos
       && (octave_env::absolute_pathname (dir)
 	  || octave_env::rooted_relative_pathname (dir)))
     {
@@ -817,7 +817,7 @@ load_path::do_find_dir (const std::string& dir) const
 
 	  size_t dname_len = dname.length ();
 
-	  if (dname.substr (dname_len - 1) == file_ops::dir_sep_str ())
+	  if (dname.substr (dname_len - 1) == file_ops::dir_sep_str)
 	    dname = dname.substr (0, dname_len - 1);
 
 	  size_t dir_len = dir.length ();
