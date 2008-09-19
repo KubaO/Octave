@@ -2896,6 +2896,9 @@ ComplexMatrix::expm (void) const
 
   if (sqpow > 0)
     {
+      if (sqpow > 1023)
+	sqpow = 1023;
+
       double scale_factor = 1.0;
       for (octave_idx_type i = 0; i < sqpow; i++)
 	scale_factor *= 2.0;
@@ -2942,8 +2945,11 @@ ComplexMatrix::expm (void) const
 
   // Compute pade approximation = inverse (dpp) * npp.
 
-  retval = dpp.solve (npp);
-	
+  retval = dpp.solve (npp, info);
+
+  if (info < 0)
+    return retval;
+
   // Reverse preconditioning step 3: repeated squaring.
 
   while (sqpow)
@@ -2977,12 +2983,13 @@ ComplexMatrix::expm (void) const
     }
 
   // construct inverse balancing permutation vector
+  Array<octave_idx_type> invpvec (nc);
   for (octave_idx_type i = 0; i < nc; i++)
     invpvec(iperm(i)) = i;     // Thanks to R. A. Lippert for this method
 
   OCTAVE_QUIT;
 
-  tmpMat = retval;
+  ComplexMatrix tmpMat = retval;
   for (octave_idx_type i = 0; i < nc; i++)
     for (octave_idx_type j = 0; j < nc; j++)
       retval(i,j) = tmpMat(invpvec(i),invpvec(j));
@@ -3002,13 +3009,12 @@ ComplexMatrix::expm (void) const
     }
 
   // construct inverse balancing permutation vector
-  Array<octave_idx_type> invpvec (nc);
   for (octave_idx_type i = 0; i < nc; i++)
     invpvec(iperm(i)) = i;     // Thanks to R. A. Lippert for this method
 
   OCTAVE_QUIT;
 
-  ComplexMatrix tmpMat = retval;
+  tmpMat = retval;
   for (octave_idx_type i = 0; i < nc; i++)
     for (octave_idx_type j = 0; j < nc; j++)
       retval(i,j) = tmpMat(invpvec(i),invpvec(j));
