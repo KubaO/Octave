@@ -785,6 +785,52 @@ return the product of the elements.\n\
   DATA_REDUCTION (prod);
 }
 
+
+#define SINGLE_TYPE_CONCAT(TYPE, EXTRACTOR) \
+  do \
+    { \
+      int dv_len = dv.length (); \
+      Array<octave_idx_type> ra_idx (dv_len > 1 ? dv_len : 2, 0); \
+      \
+      for (int j = 1; j < n_args; j++) \
+	{ \
+	  OCTAVE_QUIT; \
+	  \
+	  TYPE ra = args(j).EXTRACTOR ();	\
+	  \
+	  if (! error_state) \
+	    { \
+	      result.insert (ra, ra_idx); \
+	      \
+	      if (error_state) \
+	        return retval; \
+	      \
+	      dim_vector dv_tmp = args (j).dims (); \
+	      \
+	      if (dim >= dv_len) \
+	        { \
+		  if (j > 1) \
+		    error ("%s: indexing error", fname.c_str ()); \
+		  break; \
+		} \
+	      else \
+		ra_idx (dim) += (dim < dv_tmp.length () ? dv_tmp (dim) : 1); \
+	    } \
+	} \
+    } \
+ while (0)
+
+#define DO_SINGLE_TYPE_CONCAT(TYPE, EXTRACTOR) \
+  do \
+    { \
+      TYPE result (dv); \
+      \
+      SINGLE_TYPE_CONCAT(TYPE, EXTRACTOR); \
+      \
+      retval = result; \
+    } \
+ while (0)
+
 static octave_value
 do_cat (const octave_value_list& args, std::string fname)
 {
@@ -810,6 +856,13 @@ do_cat (const octave_value_list& args, std::string fname)
 	{
  	  
  	  dim_vector  dv = args(1).dims ();
+	  std::string result_type = args(1).class_name ();
+	  
+	  bool all_sq_strings_p = args(1).is_sq_string ();
+	  bool all_dq_strings_p = args(1).is_dq_string ();
+	  bool all_real_p = args(1).is_real_type ();
+	  bool any_sparse_p = args(1).is_sparse_type();
+
 	  
  	  for (int i = 2; i < args.length (); i++)
   	    {
@@ -822,69 +875,143 @@ do_cat (const octave_value_list& args, std::string fname)
 		  error ("cat: dimension mismatch");
 		  return retval;
 		}
+
+	      result_type = 
+		get_concat_class (result_type, args(i).class_name ());
+
+	      if (all_sq_strings_p && ! args(i).is_sq_string ())
+		all_sq_strings_p = false;
+	      if (all_dq_strings_p && ! args(i).is_dq_string ())
+		all_dq_strings_p = false;
+	      if (all_real_p && ! args(i).is_real_type ())
+		all_real_p = false;
+	      if (!any_sparse_p && args(i).is_sparse_type ())
+		any_sparse_p = true;
 	    }
 
-	  // The lines below might seem crazy, since we take a copy
-	  // of the first argument, resize it to be empty and then resize
-	  // it to be full. This is done since it means that there is no
-	  // recopying of data, as would happen if we used a single resize.
-	  // It should be noted that resize operation is also significantly 
-	  // slower than the do_cat_op function, so it makes sense to have an
-	  // empty matrix and copy all data.
-	  //
-	  // We might also start with a empty octave_value using
-	  //   tmp = octave_value_typeinfo::lookup_type (args(1).type_name());
-	  // and then directly resize. However, for some types there might be
-	  // some additional setup needed, and so this should be avoided.
-
-	  octave_value tmp;
-
-	  int i;
-          for (i = 1; i < n_args; i++)
+	  if (result_type == "double")
 	    {
-	      if (! args (i).all_zero_dims ())
+	      if (any_sparse_p)
+		{	    
+		  if (all_real_p)
+		    DO_SINGLE_TYPE_CONCAT (SparseMatrix, sparse_matrix_value);
+		  else
+		    DO_SINGLE_TYPE_CONCAT (SparseComplexMatrix, sparse_complex_matrix_value);
+		}
+	      else
 		{
-		  tmp = args (i);
-		  break;
+		  if (all_real_p)
+		    DO_SINGLE_TYPE_CONCAT (NDArray, array_value);
+		  else
+		    DO_SINGLE_TYPE_CONCAT (ComplexNDArray, complex_array_value);
 		}
 	    }
+	  else if (result_type == "char")
+	    {
+	      char type = all_dq_strings_p ? '"' : '\'';
 
-	  if (i == n_args)
-	    retval = Matrix ();
+	      maybe_warn_string_concat (all_dq_strings_p, all_sq_strings_p);
+
+	      charNDArray result (dv, Vstring_fill_char);
+
+	      SINGLE_TYPE_CONCAT (charNDArray, char_array_value);
+
+	      retval = octave_value (result, true, type);
+	    }
+	  else if (result_type == "logical")
+	    {
+	      if (any_sparse_p)
+		DO_SINGLE_TYPE_CONCAT (SparseBoolMatrix, sparse_bool_matrix_value);
+	      else
+		DO_SINGLE_TYPE_CONCAT (boolNDArray, bool_array_value);
+	    }
+	  else if (result_type == "int8")
+	    DO_SINGLE_TYPE_CONCAT (int8NDArray, int8_array_value);
+	  else if (result_type == "int16")
+	    DO_SINGLE_TYPE_CONCAT (int16NDArray, int16_array_value);
+	  else if (result_type == "int32")
+	    DO_SINGLE_TYPE_CONCAT (int32NDArray, int32_array_value);
+	  else if (result_type == "int64")
+	    DO_SINGLE_TYPE_CONCAT (int64NDArray, int64_array_value);
+	  else if (result_type == "uint8")
+	    DO_SINGLE_TYPE_CONCAT (uint8NDArray, uint8_array_value);
+	  else if (result_type == "uint16")
+	    DO_SINGLE_TYPE_CONCAT (uint16NDArray, uint16_array_value);
+	  else if (result_type == "uint32")
+	    DO_SINGLE_TYPE_CONCAT (uint32NDArray, uint32_array_value);
+	  else if (result_type == "uint64")
+	    DO_SINGLE_TYPE_CONCAT (uint64NDArray, uint64_array_value);
 	  else
 	    {
-	      tmp = tmp.resize (dim_vector (0,0)).resize (dv);
+	      // The lines below might seem crazy, since we take a copy
+	      // of the first argument, resize it to be empty and then resize
+	      // it to be full. This is done since it means that there is no
+	      // recopying of data, as would happen if we used a single resize.
+	      // It should be noted that resize operation is also significantly 
+	      // slower than the do_cat_op function, so it makes sense to have
+	      // an empty matrix and copy all data.
+	      //
+	      // We might also start with a empty octave_value using
+	      //   tmp = octave_value_typeinfo::lookup_type 
+	      //                                (args(1).type_name());
+	      // and then directly resize. However, for some types there might
+	      // be some additional setup needed, and so this should be avoided.
 
-	      if (error_state)
-		return retval;
+	      octave_value tmp;
 
-	      int dv_len = dv.length ();
-	      Array<octave_idx_type> ra_idx (dv_len, 0);
-
-	      for (int j = i; j < n_args; j++)
+	      int i;
+	      for (i = 1; i < n_args; i++)
 		{
-		  if (args (j). dims (). any_zero ())
-		    continue;
+		  if (! args (i).all_zero_dims ())
+		    {
+		      tmp = args (i);
+		      break;
+		    }
+		}
 
-		  tmp = do_cat_op (tmp, args (j), ra_idx);
+	      if (i == n_args)
+		retval = Matrix ();
+	      else
+		{
+		  tmp = tmp.resize (dim_vector (0,0)).resize (dv);
 
 		  if (error_state)
 		    return retval;
 
-		  dim_vector dv_tmp = args (j).dims ();
+		  int dv_len = dv.length ();
+		  Array<octave_idx_type> ra_idx (dv_len, 0);
 
-		  if (dim >= dv_len)
+		  for (int j = i; j < n_args; j++)
 		    {
-		      if (j > i)
-			error ("%s: indexing error", fname.c_str ());
-		      break;
-		    }
-		  else
-		    ra_idx (dim) += (dim < dv_tmp.length () ? 
-				     dv_tmp (dim) : 1);
-		}
+		      if (args (j). dims (). any_zero ())
+			continue;
 
-	      retval = tmp;
+		      tmp = do_cat_op (tmp, args (j), ra_idx);
+
+		      if (error_state)
+			return retval;
+
+		      dim_vector dv_tmp = args (j).dims ();
+
+		      if (dim >= dv_len)
+			{
+			  if (j > i)
+			    error ("%s: indexing error", fname.c_str ());
+			  break;
+			}
+		      else
+			ra_idx (dim) += (dim < dv_tmp.length () ? 
+					 dv_tmp (dim) : 1);
+		    }
+
+		  retval = tmp;
+		}
+	    }
+	  if (! error_state)
+	    {
+	      // Reshape, chopping trailing singleton dimensions
+	      dv.chop_trailing_singletons ();
+	      retval = retval.reshape (dv);
 	    }
 	}
       else

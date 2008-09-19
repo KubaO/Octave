@@ -48,6 +48,22 @@ function m = cell2mat (c)
     else
       error ("cell2mat: all elements of cell array must be numeric, logical or char");
     endif
+  elseif (ndims (c) == 2)
+    nr = rows (c);
+    nc = columns (c);
+    if (nc > nr)
+      c1 = cell (nr, 1);
+      for i = 1 : nr
+	c1{i} = [c{i : nr : end}];
+      endfor
+      m = cat (1, c1 {:});
+    else
+      c1 = cell (nc, 1);
+      for i = 1 : nc
+	c1{i} = cat (1, c{(i - 1) * nr  + [1 : nr]});
+      endfor
+      m = [c1{:}];
+    endif
   else
     ## n dimensions case
     for k = ndims (c):-1:2,
