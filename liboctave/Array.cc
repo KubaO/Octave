@@ -2008,8 +2008,12 @@ Array<T>::value (void) const
       retval = index (idx[0]);
     }
   else
-    (*current_liboctave_error_handler)
-      ("Array<T>::value: invalid number of indices specified");
+    {
+      clear_index ();
+
+      (*current_liboctave_error_handler)
+	("Array<T>::value: invalid number of indices specified");
+    }
 
   clear_index ();
 
@@ -2532,6 +2536,8 @@ assign1 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	    }
 	  else
 	    {
+	      lhs.clear_index ();
+
 	      (*current_liboctave_error_handler)
 		("A(I) = X: X must be a scalar or a vector with same length as I");
 
@@ -2540,6 +2546,8 @@ assign1 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	}
       else
 	{
+	  lhs.clear_index ();
+
 	  (*current_liboctave_error_handler)
 	    ("A(I) = X: unable to resize A");
 
@@ -2560,11 +2568,17 @@ assign1 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	    lhs.xelem (i) = rhs.elem (i);
 	}
       else if (rhs_len != lhs_len)
-	(*current_liboctave_error_handler)
-	  ("A(:) = X: A must be the same size as X");
+	{
+	  lhs.clear_index ();
+
+	  (*current_liboctave_error_handler)
+	    ("A(:) = X: A must be the same size as X");
+	}
     }
   else if (! (rhs_len == 1 || rhs_len == 0))
     {
+      lhs.clear_index ();
+
       (*current_liboctave_error_handler)
 	("A([]) = X: X must also be an empty matrix or a scalar");
 
@@ -2626,6 +2640,7 @@ assign2 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	  break;
 
 	default:
+	  lhs.clear_index ();
 	  (*current_liboctave_error_handler)
 	    ("Array<T>::assign2: Dimension mismatch");
 	  return 0;
@@ -2740,6 +2755,8 @@ assign2 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 		{
 		  if (! (rhs_is_scalar || (rhs_nr == 0 || rhs_nc == 0)))
 		    {
+		      lhs.clear_index ();
+
 		      (*current_liboctave_error_handler)
 		("A([], []) = X: X must be an empty matrix or a scalar");
 
@@ -2748,12 +2765,10 @@ assign2 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 		}
 	      else
 		{
+		  lhs.clear_index ();
+
 		  (*current_liboctave_error_handler)
-    ("A(I, J) = X: X must be a scalar or the number of elements in I must");
-		  (*current_liboctave_error_handler)
-    ("match the number of rows in X and the number of elements in J must");
-		  (*current_liboctave_error_handler)
-    ("match the number of columns in X");
+    ("A(I, J) = X: X must be a scalar or the number of elements in I must match the number of rows in X and the number of elements in J must match the number of columns in X");
 
 		  retval = 0;
 		}
@@ -2871,8 +2886,14 @@ assign2 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	      else if (len == 0)
 		{
 		  if (! (rhs_is_scalar || (rhs_nr == 0 || rhs_nc == 0)))
-		    (*current_liboctave_error_handler)
-		      ("A([]) = X: X must be an empty matrix or scalar");
+		    {
+		      lhs.clear_index ();
+
+		      (*current_liboctave_error_handler)
+			("A([]) = X: X must be an empty matrix or scalar");
+
+		      retval = 0;
+		    }
 		}
 	      else if (len == rhs_nr * rhs_nc)
 		{
@@ -2914,6 +2935,8 @@ assign2 (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 		}
 	      else
 		{
+		  lhs.clear_index ();
+
 		  (*current_liboctave_error_handler)
       ("A(I) = X: X must be a scalar or a matrix with the same size as I");
 
@@ -2960,6 +2983,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
     }
   else if (n_idx == 0)
     {
+      lhs.clear_index ();
+
       (*current_liboctave_error_handler)
 	("invalid number of indices for matrix expression");
 
@@ -2986,6 +3011,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	    {
 	      if (! (rhs_dims.all_ones () || rhs_dims.any_zero ()))
 		{
+		  lhs.clear_index ();
+
 		  (*current_liboctave_error_handler)
 		    ("A([]) = X: X must be an empty matrix or scalar");
 
@@ -3034,6 +3061,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	    }
 	  else
 	    {
+	      lhs.clear_index ();
+
 	      (*current_liboctave_error_handler)
 		("A(I) = X: X must be a scalar or a matrix with the same size as I");
 
@@ -3145,6 +3174,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 		    }
 		  else if (new_dims_numel != rhs_dims_numel || new_dims_vec > 1)
 		    {
+		      lhs.clear_index ();
+
 		      (*current_liboctave_error_handler)
 			("A(IDX-LIST) = RHS: mismatched index and RHS dimension");
 		      return retval;
@@ -3172,6 +3203,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 			k++;
 		      else if (nelem != 1)
 			{
+			  lhs.clear_index ();
+
 			  (*current_liboctave_error_handler)
 			    ("A(IDX-LIST) = RHS: mismatched index and RHS dimension");
 			  return retval;
@@ -3213,6 +3246,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 	      // We reshaped and the last dimension changed.  This has to
 	      // be an error, because we don't know how to undo that
 	      // later...
+
+	      lhs.clear_index ();
 
 	      (*current_liboctave_error_handler)
 		("array index %d (= %d) for assignment requires invalid resizing operation",
@@ -3340,6 +3375,8 @@ assignN (Array<LT>& lhs, const Array<RT>& rhs, const LT& rfv)
 
 		  if (n != rhs.numel ())
 		    {
+		      lhs.clear_index ();
+
 		      (*current_liboctave_error_handler)
 			("A(IDX-LIST) = X: X must be a scalar or size of X must equal number of elements indexed by IDX-LIST");
 
