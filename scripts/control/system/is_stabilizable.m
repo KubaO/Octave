@@ -75,7 +75,7 @@ function retval = is_stabilizable (a, b, tol, dflg)
 
 
   ## Checking dimensions
-  n = is_square (a);
+  n = issquare (a);
   if (n == 0)
     error ("is_stabilizable: a must be square");
   endif
