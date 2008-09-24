@@ -58,6 +58,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "unwind-prot.h"
 #include "utils.h"
 #include "variables.h"
+#include "debug.h"
 
 // Should Octave always check to see if function files have changed
 // since they were last compiled?
@@ -1091,6 +1092,11 @@ symbol_out_of_date (symbol_record *sr)
 		      else
 			retval = true;
 		    }
+
+		  // If the function has been replaced then clear any 
+		  // breakpoints associated with it
+		  if (retval)
+		    bp_table::remove_all_breakpoints_in_file (nm, true);
 		}
 	    }
 	}

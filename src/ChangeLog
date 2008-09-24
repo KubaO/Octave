@@ -4,6 +4,21 @@
 
 2008-09-19  David Bateman  <dbateman@free.fr>
 
+	* debug.cc (static octave_user_function *get_user_function 
+	(const std::string&)):  Function lookup to force out of date check.
+	(bp_table::intmap bp_table::do_remove_all_breakpoints_in_file 
+	(const std::string&, bool)): Add flag to silence the error message 
+	from this function if a user code with breakpoints is not found.
+	(bp_table::fname_line_map bp_table::do_get_breakpoint_list (const 
+	octave_value_list&)): Do an out of date check on the function
+	before checking the breakpoints.
+	* debug.h (do_remove_all_breakpoints_in_file, 
+	remove_all_breakpoints_in_file): Add flag to silence error
+	message.
+	* variables.cc (static bool symbol_out_of_date (symbol_record*)):
+	If symbol out of date clear breakpoints.	
+	
+	
 	* data.cc (SINGLE_TYPE_CONCAT, DO_SINGLE_TYPE_CONCAT): New macros
 	(do_cat): Special case single type concatenations for speed.
 	* pt.mat.cc (std::string get_concat_class (const std::string&,
