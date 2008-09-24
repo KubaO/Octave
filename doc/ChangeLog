@@ -1,3 +1,7 @@
+2008-09-23  Francesco Potorti`  <Potorti@isti.cnr.it>.
+
+	* interpreter/container.txi: Fix cross reference in struct docs.
+
 2008-07-28  David Bateman  <dbateman@free.fr>
 
 	* interpreter/plot.txi: Document contourf.
