@@ -1,5 +1,10 @@
 2008-09-29  Jaroslav Hajek  <highegg@gmail.com>
 
+	* Array.cc (Array<T>::maybe_delete_elements_2(idx_vector&)): Return on
+	empty index vector.
+
+2008-09-29  Jaroslav Hajek  <highegg@gmail.com>
+
 	* Array.cc (Array<T>::maybe_delete_elements_2, Array<T>::maybe_delete_elements): 
 	Ignore null assignments with empty index vectors.
 

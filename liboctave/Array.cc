@@ -1409,6 +1409,8 @@ Array<T>::maybe_delete_elements_2 (idx_vector& idx_arg)
       nr = 1;
       nc = n;
     }
+  else
+    return;
 
   idx_arg.sort (true);
 
