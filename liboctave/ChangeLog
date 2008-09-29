@@ -1,3 +1,7 @@
+2008-09-24  Jaroslav Hajek  <highegg@gmail.com>
+
+	Version 3.0.3 released.
+
 2008-09-29  Jaroslav Hajek  <highegg@gmail.com>
 
 	* Array.cc (Array<T>::maybe_delete_elements_2(idx_vector&)): Return on

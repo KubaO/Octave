@@ -1,3 +1,7 @@
+2008-09-24  Jaroslav Hajek  <highegg@gmail.com>
+
+	Version 3.0.3 released.
+
 2008-09-24  Thomas Weber  <thomas.weber.mail@gmail.com>
 
 	* DLD-FUNCTIONS/regexp.cc (octregexp_list): Retry if match limit
