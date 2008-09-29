@@ -1,3 +1,8 @@
+2008-09-24  John W. Eaton  <jwe@octave.org>
+
+	* load-path.cc (load_path::do_initialize): Check for OCTAVE_PATH
+	in the environment, not OCTAVE_LOADPATH.
+
 2008-09-18  David Bateman  <dbateman@free.fr>
 
 	* DLD-FUNCTIONS/fftw.cc (Ffftw): Clarify the documentation.
