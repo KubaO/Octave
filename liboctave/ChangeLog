@@ -1,3 +1,8 @@
+2008-09-29  Jaroslav Hajek  <highegg@gmail.com>
+
+	* Array.cc (Array<T>::maybe_delete_elements_2, Array<T>::maybe_delete_elements): 
+	Ignore null assignments with empty index vectors.
+
 2008-09-19  John W. Eaton  <jwe@octave.org>
 
 	* Array.cc (assign1, assign2, assignN):
