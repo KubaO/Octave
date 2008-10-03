@@ -37,7 +37,7 @@
 %!error compan ([]);
 
 %% test/octave.test/poly/conv-1.m
-%!assert(all (all (conv (ones (3, 1), ones (3, 1)) == [1, 2, 3, 2, 1])));
+%!assert(all (all (conv (ones (3, 1), ones (3, 1)) == [1, 2, 3, 2, 1].')));
 
 %% test/octave.test/poly/conv-2.m
 %!assert(all (all (conv (ones (1, 3), ones (3, 1)) == [1, 2, 3, 2, 1])));
@@ -62,18 +62,15 @@
 %% test/octave.test/poly/deconv-2.m
 %!test
 %! [b, r] = deconv ([3, 6], [1, 2, 3]);
-%! assert(b == 0 && all (all (r == [0, 3, 6])));
+%! assert(b == 0 && all (all (r == [3, 6])));
 
 %% test/octave.test/poly/deconv-3.m
 %!test
 %! [b, r] = deconv ([3, 6], [1; 2; 3]);
-%! assert(b == 0 && all (all (r == [0, 3, 6])));
+%! assert(b == 0 && all (all (r == [3, 6])));
 
 %% test/octave.test/poly/deconv-4.m
 %!error [b, r] = deconv ([3, 6], [1, 2; 3, 4]);;
-
-%% test/octave.test/poly/deconv-5.m
-%!error <number of rows must match> [b, r] = deconv ([3; 6], [1, 2, 3]);
 
 %% test/octave.test/poly/poly-1.m
 %!assert(all (all (poly ([1, 2, 3]) == [1, -6, 11, -6])));
