@@ -1,3 +1,7 @@
+2008-09-29  Ben Abbott <bpabbott@mac.com>
+
+	* polynomial/conv.m: Correct row/col orientation of output.
+
 2008-09-24  John W. Eaton  <jwe@octave.org>
 
 	* plot/fplot.m: Call axis after calling plot.
