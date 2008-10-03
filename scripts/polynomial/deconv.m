@@ -49,6 +49,11 @@ function [b, r] = deconv (y, a)
 
   lb = ly - la + 1;
 
+  ## Ensure A is oriented as Y.
+  if (diff (size (y)(1:2)) * diff (size (a)(1:2)) < 0)
+    a = permute (a, [2, 1]);
+  endif
+
   if (ly > la)
     b = filter (y, a, [1, (zeros (1, ly - la))]);
   elseif (ly == la)
@@ -61,7 +66,16 @@ function [b, r] = deconv (y, a)
   if (ly == lc)
     r = y - conv (a, b);
   else
-    r = [(zeros (1, lc - ly)), y] - conv (a, b);
+    ## Respect the orientation of Y"
+    if (size (y, 1) <= size (y, 2))
+      r = [(zeros (1, lc - ly)), y] - conv (a, b);
+    else
+      r = [(zeros (lc - ly, 1)); y] - conv (a, b);
+    endif
+    if (ly < la)
+      ## Trim the remainder is equal to the length of Y.
+      r = r(end-(length(y)-1):end);
+    endif
   endif
 
 endfunction
