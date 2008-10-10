@@ -4,6 +4,10 @@
 
 	* polynomial/conv.m: Correct row/col orientation of output.
 
+2008-09-27  Ivan Sutoris  <ivan.sutoris@gmail.com>
+
+	* optimization/sqp.m: Document additional parameters.
+
 2008-09-24  John W. Eaton  <jwe@octave.org>
 
 	* plot/fplot.m: Call axis after calling plot.
