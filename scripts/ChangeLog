@@ -1,3 +1,7 @@
+2008-10-02  Benjamin Lindner <lindnerb@users.sourceforge.net>
+
+	* pkg.m (configure_make): Enclose building directory in quotes.
+
 2008-09-29  Ben Abbott <bpabbott@mac.com>
 
 	* polynomial/deconv.m: Fix row/col orientation & length of output.
