@@ -1,3 +1,9 @@
+2008-10-10  Jaroslav Hajek  <highegg@gmail.com>
+
+	* sparse-util.h (SparseCholPrint): Change char * argument to const
+	char *.
+	* sparse-util.cc (SparseCholPrint): Likewise.
+
 2008-10-08  John W. Eaton  <jwe@octave.org>
 
 	* Sparse-op-defs.h (SPARSE_SMSM_BOOL_OPS): Duplicate code for scalar
