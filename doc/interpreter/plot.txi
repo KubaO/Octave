@@ -401,29 +401,45 @@ Graphics objects are only referenced by a numeric index, or @dfn{handle}.
 
 @table @asis
 @item root figure
+@cindex root figure graphics object
+@cindex graphics object, root figure
 The parent of all figure objects.  The index for the root figure is
 defined to be 0.
 
 @item figure
+@cindex figure graphics object
+@cindex graphics object, figure
 A figure window.
 
 @item axes
+@cindex axes graphics object
+@cindex graphics object, axes
 An set of axes.  This object is a child of a figure object and may be a
 parent of line, text, image, patch, or surface objects.
 
 @item line
+@cindex line graphics object
+@cindex graphics object, line
 A line in two or three dimensions.
 
 @item text
+@cindex text graphics object
+@cindex graphics object, text
 Text annotations.
 
 @item image
+@cindex image graphics object
+@cindex graphics object, image
 A bitmap image.
 
 @item patch
+@cindex patch graphics object
+@cindex graphics object, patch
 A filled polygon, currently limited to two dimensions.
 
 @item surface
+@cindex surface graphics object
+@cindex graphics object, surface 
 A three-dimensional surface.
 @end table
 
@@ -597,6 +613,7 @@ Index to graphics object for the current figure.
 
 @node Figure Properties
 @subsubsection Figure Properties
+@cindex figure properties
 
 @table @code
 @item nextplot
@@ -627,14 +644,17 @@ Indicates the orientation for printing.  Either @code{"landscape"} or
 
 @node Axes Properties
 @subsubsection Axes Properties
+@cindex axes properties
 
 @table @code
 @item position
-A four-element vector specifying the coordinates of the lower left
-corner and width and height of the plot, in normalized units.  For
-example, @code{[0.2, 0.3, 0.4, 0.5]} sets the lower left corner of the
-axes at @math{(0.2, 0.3)} and the width and height to be 0.4 and 0.5
-respectively.
+A vector specifying the position of the plot, excluding titles, axes and
+legend.  The four elements of the vector are the coordinates of the
+lower left corner and width and height of the plot, in units normalized
+to the width and height of the plot window.  For example, @code{[0.2,
+0.3, 0.4, 0.5]} sets the lower left corner of the axes at @math{(0.2,
+0.3)} and the width and height to be 0.4 and 0.5 respectively.  See also
+the @code{outerposition} property.
 
 @item title
 Index of text object for the axes title.
@@ -753,15 +773,18 @@ May be one of
 @end table
 
 @item outerposition
-A four-element vector specifying the coordinates of the lower left
-corner and width and height of the plot, in normalized units including
-the tics, labels etc.  For example, @code{[0.2, 0.3, 0.4, 0.5]} sets the
-lower left corner of the axes at @math{(0.2, 0.3)} and the width and
-height to be 0.4 and 0.5 respectively.
+A vector specifying the position of the plot, including titles, axes and
+legend.  The four elements of the vector are the coordinates of the
+lower left corner and width and height of the plot, in units normalized
+to the width and height of the plot window.  For example, @code{[0.2,
+0.3, 0.4, 0.5]} sets the lower left corner of the axes at @math{(0.2,
+0.3)} and the width and height to be 0.4 and 0.5 respectively.  See also
+the @code{position} property.
 @end table
 
 @node Line Properties
 @subsubsection Line Properties
+@cindex line properties
 
 @table @code
 @itemx xdata
@@ -796,6 +819,7 @@ future version of Octave.
 
 @node Text Properties
 @subsubsection Text Properties
+@cindex text properties
 
 @table @code
 @item string
@@ -1079,6 +1103,7 @@ The result of which can be seen in @ref{fig:extendedtext}
 
 @node Image Properties
 @subsubsection Image Properties
+@cindex image properties
 
 @table @code
 @item cdata
@@ -1096,6 +1121,7 @@ the image.
 
 @node Patch Properties
 @subsubsection Patch Properties
+@cindex patch properties
 
 @table @code
 @item cdata
@@ -1126,6 +1152,7 @@ The color of the line defining the patch.  @xref{Colors}.
 
 @node Surface Properties
 @subsubsection Surface Properties
+@cindex surface properties
 
 @table @code
 @item xdata
@@ -1142,6 +1169,8 @@ future version of Octave.
 
 @node Managing Default Properties
 @subsection Managing Default Properties
+@cindex default graphics properties
+@cindex graphics properties, default
 
 Object properties have two classes of default values, @dfn{factory
 defaults} (the initial values) and @dfn{user-defined defaults}, which
@@ -1228,6 +1257,8 @@ returns a list of factory defaults.
 
 @node Colors
 @subsection Colors
+@cindex graphics colors
+@cindex colors, graphics
 
 Colors may be specified as RGB triplets with values ranging from zero to
 one, or by name.  Recognized color names include @code{"blue"},
@@ -1236,6 +1267,9 @@ one, or by name.  Recognized color names include @code{"blue"},
 
 @node Line Styles
 @subsection Line Styles
+@cindex line styles, graphics
+@cindex graphics line styles
+
 Line styles are specified by the following properties:
 
 @table @code
@@ -1259,6 +1293,9 @@ of 2 is twice as wide as the default, etc.
 
 @node Marker Styles
 @subsection Marker Styles
+@cindex graphics marker styles
+@cindex marker styles, graphics
+
 Marker styles are specified by the following properties:
 @table @code
 @item marker
