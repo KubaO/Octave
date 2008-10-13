@@ -35,21 +35,22 @@ function h = __errplot__ (fstr, p, a1, a2, a3, a4, a5, a6)
 
   for i = 1:nplots
     ## Set the plot type based on linestyle.
-    if (fmt.linestyle == "~")
-      ifmt = "yerr";
-    elseif (fmt.linestyle == ">")
-      ifmt = "xerr";
-    elseif (fmt.linestyle == "~>")
-      ifmt = "xyerr";
-    elseif (fmt.linestyle == "#")
-      ifmt = "box";
-    elseif (fmt.linestyle == "#~")
-      ifmt = "boxy";
-    elseif (fmt.linestyle == "#~>")
-      ifmt = "boxxy";
-    else
-      print_usage ();
-    endif
+    switch (fmt.linestyle)
+      case "~"
+	ifmt = "yerr";
+      case ">"
+	ifmt = "xerr";
+      case "~>"
+	ifmt = "xyerr";
+      case "#"
+	ifmt = "box";
+      case "#~"
+	ifmt = "boxy";
+      case "#~>"
+	ifmt = "boxxy";
+      otherwise
+	print_usage ();
+    endswitch
 
     h = __line__ (p);
 

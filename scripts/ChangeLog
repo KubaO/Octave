@@ -1,3 +1,8 @@
+2008-10-13  Francesco Potorti  <pot@gnu.org>
+
+	* plot/__errplot__.m: Wrong if switch compared strings using ==.
+	Subsituted with a switch statement.
+
 2008-12-26  Francesco Potortì  <pot@gnu.org>
 
 	* general/prepad.m: Add reference to postpad.
