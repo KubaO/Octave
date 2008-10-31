@@ -1,3 +1,7 @@
+2008-10-30  John W. Eaton  <jwe@octave.org>
+
+	* oct-map.cc (Octave_map::index): Copy key_list.
+
 2008-10-17  John W. Eaton  <jwe@octave.org>
 
 	* DLD-FUNCTIONS/__qp__.cc (qp): Undo part of change from
