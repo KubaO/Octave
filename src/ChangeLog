@@ -9348,6 +9348,11 @@
 	ov-range.h, ov-base-mat.h, (resize): New function.
 
 
+2008-10-31  David Bateman  <dbateman@free.fr>
+
+	* ov-base-scalar.h (octave_value octave_base_scalar::reshape 
+	(const dim_vector&) const): New method.
+
 2004-07-23  John W. Eaton  <jwe@octave.org>
 
 	* symtab.cc (whos_parameter): Move decl here, from symtab.h.
