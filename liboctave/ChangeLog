@@ -1,3 +1,8 @@
+2008-11-17  John W. Eaton  <jwe@octave.org>
+
+	* dir-ops.cc (dir_entry::read): Use std::list<std::string> to
+	cache names before converting to string_vector.
+
 2008-10-09  Jaroslav Hajek <highegg@gmail.com>
 
 	* oct-sort.cc (octave_sort<T>::merge_getmem,
