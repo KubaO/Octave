@@ -1,3 +1,9 @@
+2008-11-12  David Bateman  <dbateman@free.fr>
+
+	* OPERATORS/op-cell.cc (op_catop_matrix_cell): Cast args in the correct
+	order.
+	* OPERATORS/op-struct.cc (op_catop_matrix_struct): Ditto.
+
 2008-10-30  John W. Eaton  <jwe@octave.org>
 
 	* oct-map.cc (Octave_map::index): Copy key_list.
