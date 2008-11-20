@@ -2453,7 +2453,7 @@ Clears the global symbol names.\n\
 @item -variables, -v\n\
 Clears the local variable names.\n\
 @end table\n\
-With the execption of @code{exclusive}, all long options can be used \n\
+With the exception of @code{exclusive}, all long options can be used \n\
 without the dash as well.\n\
 @end deffn")
 {
