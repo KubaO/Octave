@@ -1,3 +1,7 @@
+2008-12-08  Jaroslav Hajek  <highegg@gmail.com>
+
+	* pt-select.cc (equal): Make empty matrices match.
+
 2008-11-12  David Bateman  <dbateman@free.fr>
 
 	* OPERATORS/op-cell.cc (op_catop_matrix_cell): Cast args in the correct

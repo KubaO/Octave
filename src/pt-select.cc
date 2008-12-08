@@ -168,7 +168,7 @@ equal (const octave_value& val, const octave_value& test)
       octave_value tmp = do_binary_op (octave_value::op_eq, val, test);
 
       if (! error_state && tmp.is_defined ())
-	retval = tmp.is_true ();
+	retval = tmp.is_true () || tmp.is_empty ();
     }
 
   return retval;
