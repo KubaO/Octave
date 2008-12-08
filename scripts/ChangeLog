@@ -1,3 +1,7 @@
+2008-11-24  Ben Abbott <bpabbott@mac.com>
+
+	* plot/legend.m: Correct ording of legend labels.
+
 2008-03-20  Ben Abbott <bpabbott@mac.com>
 
 	* statistics/base/statistics.m: Calculate median and quantiles in

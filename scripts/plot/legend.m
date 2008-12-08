@@ -148,11 +148,13 @@ function legend (varargin)
 	nargs = numel (varargin);
       endif
     elseif (iscellstr (arg))
-      varargin = arg;
+      varargin = fliplr (arg);
       nargs = numel (varargin);
     else
       error ("legend: expecting argument to be a character string");
     endif
+  else
+    varargin(1:nargs) = fliplr (varargin(1:nargs));
   endif
 
   if (nargs > 0)
@@ -198,6 +200,12 @@ function legend (varargin)
   endif
 
 endfunction
+
+%!demo
+%! close all;
+%! plot(1:10, 1:10, 1:10, fliplr(1:10));
+%! title("incline is blue and decline is green");
+%! legend({"I'm blue", "I'm green"}, "location", "east")
 
 %!demo
 %! close all;
