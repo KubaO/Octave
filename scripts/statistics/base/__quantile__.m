@@ -87,7 +87,12 @@ function inv = __quantile__ (x, p, method = 5)
            ## Used by SAS, method PCTLDEF=2.
            ## http://support.sas.com/onlinedoc/913/getDoc/en/statug.hlp/stdize_sect14.htm
 	    t = max (kron (p, m), 1);
-	    t = roundb (t);
+	    # t = roundb (t); 
+	    # roundb unsupported in 3.0.x, so supply a hack
+	    t1 = round (t);
+	    t1m = (abs (t - t1) == 0.5) & (mod (t1, 2) == 1); 
+	    t1 (t1m) += 2 * (t-t1)(t1m);
+	    t = t1;
 	    inv(k,:) = x(t + pcd);
         endswitch
 
