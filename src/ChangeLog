@@ -8,6 +8,11 @@
 	order.
 	* OPERATORS/op-struct.cc (op_catop_matrix_struct): Ditto.
 
+2008-10-31  David Bateman  <dbateman@free.fr>
+
+	* ov-base-scalar.h (octave_value octave_base_scalar::reshape 
+	(const dim_vector&) const): New method.
+
 2008-10-30  John W. Eaton  <jwe@octave.org>
 
 	* oct-map.cc (Octave_map::index): Copy key_list.
@@ -9357,11 +9362,6 @@
 	* ov-base.cc, ov-base.h, ov-scalar.h, ov-complex.h, ov-bool.h, 
 	ov-range.h, ov-base-mat.h, (resize): New function.
 
-
-2008-10-31  David Bateman  <dbateman@free.fr>
-
-	* ov-base-scalar.h (octave_value octave_base_scalar::reshape 
-	(const dim_vector&) const): New method.
 
 2004-07-23  John W. Eaton  <jwe@octave.org>
 
