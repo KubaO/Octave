@@ -1,3 +1,8 @@
+2008-09-08  Kai Habel  <kai.habel@gmx.de>
+
+        * plot/contourf.m: Fix case for equal-sized matrices
+        of X and Y.
+
 2008-11-26  Francesco Potortì  <pot@gnu.org>
 
 	* specfun/nchoosek.m: Set max_recursion_depth and use a subfunction.
