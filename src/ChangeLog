@@ -1,3 +1,8 @@
+2008-10-16  John W. Eaton  <jwe@octave.org>
+
+	* graphics.cc (base_properties::remove_child): Handle children as
+	a column vector instead of a row vector.
+
 2008-12-08  Jaroslav Hajek  <highegg@gmail.com>
 
 	* pt-select.cc (equal): Make empty matrices match.
