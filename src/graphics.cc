@@ -430,6 +430,13 @@ graphics_object::set (const octave_value_list& args)
     error ("set: invalid number of arguments");
 }
 
+static double
+make_handle_fraction (void)
+{
+  static double maxrand = RAND_MAX + 2.0;
+
+  return (rand () + 1.0) / maxrand;
+}
 
 graphics_handle
 gh_manager::get_handle (const std::string& go_name)
@@ -438,6 +445,9 @@ gh_manager::get_handle (const std::string& go_name)
 
   if (go_name == "figure")
     {
+      // Figure handles are positive integers corresponding to the
+      // figure number.
+
       // We always want the lowest unused figure number.
 
       retval = 1;
@@ -447,6 +457,11 @@ gh_manager::get_handle (const std::string& go_name)
     }
   else
     {
+      // Other graphics handles are negative integers plus some random
+      // fractional part.  To avoid running out of integers, we
+      // recycle the integer part but tack on a new random part each
+      // time.
+
       free_list_iterator p = handle_free_list.begin ();
 
       if (p != handle_free_list.end ())
@@ -456,11 +471,9 @@ gh_manager::get_handle (const std::string& go_name)
 	}
       else
 	{
-	  static double maxrand = RAND_MAX + 2.0;
-
 	  retval = graphics_handle (next_handle);
 
-	  next_handle = ceil (next_handle) - 1.0 - (rand () + 1.0) / maxrand;
+	  next_handle = ceil (next_handle) - 1.0 - make_handle_fraction ();
 	}
     }
 
@@ -481,7 +494,7 @@ gh_manager::do_free (const graphics_handle& h)
 	      handle_map.erase (p);
 
 	      if (h.value () < 0)
-		handle_free_list.insert (h);
+                handle_free_list.insert (ceil (h.value ()) - make_handle_fraction ());
 	    }
 	  else
 	    error ("graphics_handle::free: invalid object %g", h.value ());
