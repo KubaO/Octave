@@ -411,8 +411,16 @@ zbesi (const Complex& z, double alpha, int kode, octave_idx_type& ierr)
 
       if (ierr == 0 || ierr == 3)
 	{
-	  tmp += (2.0 / M_PI) * sin (M_PI * alpha)
+	  Complex tmp2 = (2.0 / M_PI) * sin (M_PI * alpha)
 	    * zbesk (z, alpha, kode, ierr);
+	
+	  if (kode == 2) 
+	    {
+	      // Compensate for different scaling factor of besk.
+	      tmp2 *= exp(-z - std::abs(z.real()));
+	    }
+	  
+	  tmp += tmp2;
 
 	  retval = bessel_return_value (tmp, ierr);
 	}

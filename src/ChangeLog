@@ -1,3 +1,7 @@
+2008-10-28  Brian Gough  <bjg@gnu.org>
+
+	* DLD-FUNCTIONS/besselj.cc: Added tests.
+
 2008-10-16  John W. Eaton  <jwe@octave.org>
 
 	* graphics.cc (make_handle_fraction): New static function.

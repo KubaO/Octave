@@ -1,3 +1,8 @@
+2008-10-28  Brian Gough  <bjg@gnu.org>
+
+	* lo-specfun.cc (zbesi): Fix scaling factor for negative alpha.
+	(cbesi): Likewise.
+
 2008-11-18  David Bateman  <dbateman@free.fr>
 
 	* file-ops.cc (std::string file_ops::tilde_expand (const 
