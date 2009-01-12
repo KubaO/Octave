@@ -1,3 +1,7 @@
+2008-10-21  Ben Abbott <bpabbott@mac.com>
+
+	* plot/clf.m: Improve Matlab compatibility.
+
 2008-10-16  David Bateman  <dbateman@free.fr>
 
 	* plot/subplot.m: Allow for column vector of children for figure.
