@@ -296,6 +296,8 @@ border lines are on.
 
 @DOCSTRING(text)
 
+See @ref{Text Properties} for the properties that you can set.
+
 @DOCSTRING(xlabel)
 
 @DOCSTRING(box)
