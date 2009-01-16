@@ -1,3 +1,7 @@
+2008-12-24  Doug Stewart  <dastew@sympatico.ca>
+
+	* plot/grid.m: Handle "minor" option.
+
 2008-03-04  Ben Abbott <bpabbott@mac.com>
 
 	* polynomial/polyfit.m: Modified tests to respect a relative tolerance.
