@@ -1,3 +1,7 @@
+2009-01-23  Jaroslav Hajek  <highegg@gmail.com>
+
+	* DLD-FUNCTIONS/ranpd.cc: Use relative tolerance for randp tests.
+
 2008-12-26  Francesco Potortì  <pot@gnu.org>
 
 	* data.cc (resize): Add cross reference to postpad.
