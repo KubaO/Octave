@@ -77,7 +77,7 @@ endfunction
 %! assert (strcmp (d, "dir") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts (["." filesep "file.ext");
+%! [d, n, e] = fileparts (["." filesep "file.ext"]);
 %! assert (strcmp (d, ".") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
