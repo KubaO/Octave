@@ -27,7 +27,11 @@ function [directory, name, extension, version] = fileparts (filename)
 
   if (nargin == 1)
     if (ischar (filename))
-      ds = rindex (filename, filesep);
+      if !( findstr (octave_config_info('canonical_host_type'), 'msvc')  || findstr (octave_config_info('canonical_host_type'), 'mingw') )
+        ds = rindex (filename, filesep);
+      else
+        ds = max (rindex (filename, "\\"),rindex (filename, "/"));
+      endif
       es = rindex (filename, ".");
       ## These can be the same if they are both 0 (no dir or ext).
       if (es <= ds)
@@ -65,27 +69,27 @@ endfunction
 %! assert (strcmp (d, "") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts ("/file.ext");
-%! assert (strcmp (d, "/") && strcmp (n, "file") && strcmp (e, ".ext"));
+%! [d, n, e] = fileparts ([filesep "file.ext"]);
+%! assert (strcmp (d, filesep) && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts ("dir/file.ext");
+%! [d, n, e] = fileparts (["dir" filesep "file.ext"]);
 %! assert (strcmp (d, "dir") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts ("./file.ext");
+%! [d, n, e] = fileparts (["." filesep "file.ext");
 %! assert (strcmp (d, ".") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts ("d1/d2/file.ext");
+%! [d, n, e] = fileparts (["d1" filesep "d2" filesep "file.ext"]);
 %! assert (strcmp (d, "d1/d2") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts ("/d1/d2/file.ext");
+%! [d, n, e] = fileparts ([filesep "d1" filesep "d2" filesep "file.ext"]);
 %! assert (strcmp (d, "/d1/d2") && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
-%! [d, n, e] = fileparts ("/.ext");
+%! [d, n, e] = fileparts ([filesep ".ext"]);
 %! assert (strcmp (d, "/") && strcmp (n, char (zeros (1, 0))) && strcmp (e, ".ext"));
 
 %!test
