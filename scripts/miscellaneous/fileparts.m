@@ -82,15 +82,15 @@ endfunction
 
 %!test
 %! [d, n, e] = fileparts (["d1" filesep "d2" filesep "file.ext"]);
-%! assert (strcmp (d, "d1/d2") && strcmp (n, "file") && strcmp (e, ".ext"));
+%! assert (strcmp (d, ["d1" filesep "d2"]) && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
 %! [d, n, e] = fileparts ([filesep "d1" filesep "d2" filesep "file.ext"]);
-%! assert (strcmp (d, "/d1/d2") && strcmp (n, "file") && strcmp (e, ".ext"));
+%! assert (strcmp (d, [filesep "d1" filesep "d2"]) && strcmp (n, "file") && strcmp (e, ".ext"));
 
 %!test
 %! [d, n, e] = fileparts ([filesep ".ext"]);
-%! assert (strcmp (d, "/") && strcmp (n, char (zeros (1, 0))) && strcmp (e, ".ext"));
+%! assert (strcmp (d, filesep) && strcmp (n, char (zeros (1, 0))) && strcmp (e, ".ext"));
 
 %!test
 %! [d, n, e] = fileparts (".ext");

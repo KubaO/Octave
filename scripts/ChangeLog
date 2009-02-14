@@ -1,3 +1,7 @@
+2009-02-14  Tatsuro MATSUOKA <tmacchant@yahoo.co.jp>
+
+	* miscellaneous/fileparts.m: Fix again.
+
 2009-01-29  Jaroslav Hajek  <highegg@gmail.com>
 
 	* miscellaneous/fileparts.m: Fix test for Windows.
