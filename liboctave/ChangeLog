@@ -1,3 +1,8 @@
+2009-02-05  Jaroslav Hajek  <highegg@gmail.com>
+
+	* oct-sort.cc (octave_sort<T>::merge_hi): std::copy ->
+	std::copy_backward where appropriate.
+
 2008-01-15  Rafael Laboissiere  <rafael@debian.org>
 
 	* oct-md5.cc: Include <cstdio>.
