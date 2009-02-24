@@ -1,3 +1,8 @@
+2009-02-23  John W. Eaton  <jwe@octave.org>
+
+	* plot/fplot.m: Fix nargin check.
+	From Joel Parker <Joel.Parker@radiancetech.com>.
+
 2008-01-15  Rafael Laboissiere  <rafael@debian.org>
 
 	* gethelp.cc: Include <cstdio>.
