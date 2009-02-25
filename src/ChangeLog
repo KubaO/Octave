@@ -1,3 +1,7 @@
+2009-02-25  Marco Caliari <marco.caliari@univr.it>
+
+	* graphics.cc (base_properties::remove_child): Fix order of dims.
+
 2009-02-13  John W. Eaton  <jwe@octave.org>
 
 	* oct-stream.cc (octave_base_stream::do_gets): Handle CRLF and CR.
