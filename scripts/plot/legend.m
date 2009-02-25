@@ -171,7 +171,7 @@ function legend (varargin)
   endif
 
   warned = false;
-  for i = nargs:-1:1
+  for i = 1:nargs
     arg = varargin{i};
     if (ischar (arg))
       while (k <= nkids
@@ -201,7 +201,7 @@ endfunction
 
 %!demo
 %! close all;
-%! plot(1:10, 1:10, 1:10, fliplr(1:10));
+%! plot(1:10, 1:10, 'b', 1:10, fliplr(1:10), 'g');
 %! title("incline is blue and decline is green");
 %! legend({"I'm blue", "I'm green"}, "location", "east")
 
@@ -214,8 +214,9 @@ endfunction
 %!demo
 %! close all;
 %! labels = {};
+%! color = 'bgryk';
 %! for i = 1:5
-%!     plot(1:100, i + rand(100,1)); hold on;
+%!     plot(1:100, i + rand(100,1), color(i)); hold on;
 %!     labels = {labels{:}, strcat("Signal ", num2str(i))};
 %! endfor; hold off;
 %! title("Signals with random offset and uniform noise")

@@ -1,3 +1,8 @@
+2009-02-24  Rob Mahurin  <rob@utk.edu>	
+
+	* plot/legend.m: Fix legend order.  Add explicit colors to demos.
+	From Marco Caliari <marco.caliari@univr.it>
+	
 2009-02-23  John W. Eaton  <jwe@octave.org>
 
 	* plot/fplot.m: Fix nargin check.
