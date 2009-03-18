@@ -41,6 +41,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "byte-swap.h"
 #include "ls-hdf5.h"
 #include "ls-utils.h"
+#include "ls-ascii-helper.h"
 
 DEFINE_OCTAVE_ALLOCATOR (octave_range);
 
@@ -274,14 +275,9 @@ skip_comments (std::istream& is)
 	break;
     }
 
-  for (;;)
-    {
-      if (is && (c == '%' || c == '#'))
-	while (is.get (c) && c != '\n')
-	  ; // Skip to beginning of next line, ignoring everything.
-      else
-	break;
-    }
+  // Skip to beginning of next line, ignoring everything.
+  skip_until_newline (is, false);
+  
 }
 
 bool 

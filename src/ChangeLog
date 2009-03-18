@@ -1,3 +1,21 @@
+2009-03-18  Benjamin Lindner <lindnerb@users.sourceforge.net>
+
+	* ls-oct-ascii.cc (extract_keyword): fix leaving stray '\r' in stream
+	when reading from CRLF data file by replacing loop with call to
+	read_until_newline()
+
+2009-03-03  Benjamin Lindner  <lindnerb@users.sourceforge.net>
+
+	* ls-ascii-helper.h ls-ascii-helper.cc: New files, provide helper 
+	functions skip_until_newline(), skip_preceeding_newline() and
+	read_until_newline() that take care of CR/LF handling.
+	* Makefile.in: add new files
+	* load-save.cc: Open files always in binary mode in Fload
+	* ls-mat-ascii.cc (get_mat_data_input_line), ls-oct-ascii.cc 
+	(extract_keyword, read_ascii_data), ls-oct-ascii.h (extract_keyword), 
+	ov-fcn-handle.cc, ov-fcn-inline.cc, ov-range.cc, ov-str-mat.cc 
+	(load_ascii): Use helper functions 
+	
 2009-02-25  Marco Caliari <marco.caliari@univr.it>
 
 	* graphics.cc (base_properties::remove_child): Fix order of dims.

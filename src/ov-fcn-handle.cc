@@ -56,6 +56,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "ls-oct-binary.h"
 #include "ls-hdf5.h"
 #include "ls-utils.h"
+#include "ls-ascii-helper.h"
 
 DEFINE_OCTAVE_ALLOCATOR (octave_fcn_handle);
 
@@ -330,26 +331,18 @@ octave_fcn_handle::load_ascii (std::istream& is)
     {
       octave_idx_type len = 0;
       char c;
-      std::ostringstream buf;
+      std::string buf;
 
       // Skip preceeding newline(s).
-      while (is.get (c) && c == '\n')
-	/* do nothing */;
+      skip_preceeding_newline (is);
 
       if (is)
 	{
-	  buf << c;
 
 	  // Get a line of text whitespace characters included, leaving
 	  // newline in the stream.
+	  buf = read_until_newline (is, true);
 
-	  while (is.peek () != '\n')
-	    {
-	      is.get (c);
-	      if (! is)
-		break;
-	      buf << c;
-	    }
 	}
 
       pos = is.tellg ();
@@ -408,7 +401,7 @@ octave_fcn_handle::load_ascii (std::istream& is)
 
 	  int parse_status;
 	  octave_value anon_fcn_handle = 
-	    eval_string (buf.str (), true, parse_status);
+	    eval_string (buf, true, parse_status);
 
 	  if (parse_status == 0)
 	    {

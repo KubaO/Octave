@@ -906,15 +906,12 @@ Force Octave to assume the file is in Octave's text format.\n\
 
 	  std::ios::openmode mode = std::ios::in;
 
-	  if (format == LS_BINARY
-#ifdef HAVE_HDF5
-	      || format == LS_HDF5
-#endif
-	      || format == LS_MAT_BINARY
-	      || format == LS_MAT5_BINARY
-	      || format == LS_MAT7_BINARY)
-	    mode |= std::ios::binary;
-
+	  // Open in binary mode in any case, to fix annoying bug that
+	  // text-mode opened streams cannot be seekg'ed/tellg'ed with
+	  // mingw32 (See http://oldwiki.mingw.org/index.php/Known%20Problems )
+	  // The CR/LF issues are handled in ls-ascii-helper.cc
+	  mode |= std::ios::binary;
+	  
 #ifdef HAVE_ZLIB
 	  if (use_zlib)
 	    {

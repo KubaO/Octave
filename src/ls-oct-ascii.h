@@ -29,6 +29,7 @@ along with Octave; see the file COPYING.  If not, see
 #include <string>
 
 #include "str-vec.h"
+#include "ls-ascii-helper.h"
 
 // Flag for cell elements
 #define CELL_ELT_TAG "<cell-element>"
@@ -103,8 +104,8 @@ extract_keyword (std::istream& is, const char *keyword, T& value,
 		is >> value;
 	      if (is)
 		status = true;
-	      while (is.get (c) && c != '\n' && c != '\r')
-		; // Skip to beginning of next line;
+	      // Skip to beginning of next line;
+	      skip_until_newline (is, false);
 	      break;
 	    }
 	  else if (next_only)
@@ -165,8 +166,8 @@ extract_keyword (std::istream& is, const string_vector& keywords,
 		    is >> value;
 		  if (is)
 		    status = true;
-		  while (is.get (c) && c != '\n' && c != '\r')
-		    ; // Skip to beginning of next line;
+		  // Skip to beginning of next line;
+		  skip_until_newline (is, false);
 		  return status;
 		}
 	    }

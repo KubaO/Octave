@@ -65,6 +65,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "dMatrix.h"
 
 #include "ls-mat-ascii.h"
+#include "ls-ascii-helper.h"
 
 static std::string
 get_mat_data_input_line (std::istream& is)
@@ -81,14 +82,16 @@ get_mat_data_input_line (std::istream& is)
       while (is.get (c))
 	{
 	  if (c == '\n' || c == '\r')
-	    break;
+	    {
+	      // Let skip_until_newline handle CR/LF issues...
+	      skip_until_newline (is, false);
+	      break;
+	    }
 
 	  if (c == '%' || c == '#')
 	    {
 	      // skip to end of line
-	      while (is.get (c))
-		if (c == '\n' || c == '\r')
-		  break;
+	      skip_until_newline (is, false);
 
 	      break;
 	    }

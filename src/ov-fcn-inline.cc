@@ -47,6 +47,7 @@ Open Source Initiative (www.opensource.org)
 #include "ls-oct-ascii.h"
 #include "ls-hdf5.h"
 #include "ls-utils.h"
+#include "ls-ascii-helper.h"
 
 DEFINE_OCTAVE_ALLOCATOR (octave_fcn_inline);
 
@@ -139,27 +140,20 @@ octave_fcn_inline::load_ascii (std::istream& is)
 	nm = "";
 
       char c;
-      std::ostringstream buf;
+      std::string buf;
 
       // Skip preceeding newline(s)
-      while (is.get (c) && c == '\n');
+      skip_preceeding_newline (is);
 
       if (is)
 	{
-	  buf << c;
 
 	  // Get a line of text whitespace characters included, leaving
 	  // newline in the stream
-	  while (is.peek () != '\n')
-	    {
-	      is.get (c);
-	      if (! is)
-		break;
-	      buf << c;
-	    }
+	  buf = read_until_newline (is, true);
 	}
 
-      iftext = buf.str ();
+      iftext = buf;
 
       octave_fcn_inline tmp (iftext, ifargs, nm);
       fcn = tmp.fcn;

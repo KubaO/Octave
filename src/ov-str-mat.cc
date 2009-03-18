@@ -48,6 +48,7 @@ along with Octave; see the file COPYING.  If not, see
 #include "pr-output.h"
 #include "pt-mat.h"
 #include "utils.h"
+#include "ls-ascii-helper.h"
 
 DEFINE_OCTAVE_ALLOCATOR (octave_char_matrix_str);
 DEFINE_OCTAVE_ALLOCATOR (octave_char_matrix_sq_str);
@@ -344,8 +345,7 @@ octave_char_matrix_str::load_ascii (std::istream& is)
 		      char *ftmp = tmp.fortran_vec ();
 
 		      // Skip the return line
-		      if (! is.read (ftmp, 1))
-			return false;
+		      skip_preceeding_newline (is);
 
 		      if (! is.read (ftmp, dv.numel ()) || !is)
 			{
