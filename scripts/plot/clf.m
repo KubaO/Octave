@@ -71,7 +71,11 @@ function clf (varargin)
     hc = get (hfig, "children");
   endif
 
+  set (hfig, "currentaxes", []);
   ## Delete the children.
-  delete (hc);
-
+  for k = get (hfig, "children")
+    if (ishandle (k))
+      delete (k);
+    endif
+  endfor
 endfunction

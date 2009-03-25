@@ -1,3 +1,7 @@
+2009-03-25  Jaroslav Hajek  <highegg@gmail.com>
+
+	* plot/clf.m: Fix due to M. Caliari.
+
 2009-02-24  Rob Mahurin  <rob@utk.edu>	
 
 	* plot/legend.m: Fix legend order.  Add explicit colors to demos.
