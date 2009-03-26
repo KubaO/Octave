@@ -1,3 +1,7 @@
+2009-03-25  Rob Mahurin  <rob@utk.edu>
+
+       * set/create_set.m: return a row vector.  From M. Caliari.
+
 2009-03-25  Jaroslav Hajek  <highegg@gmail.com>
 
 	* plot/clf.m: Fix due to M. Caliari.

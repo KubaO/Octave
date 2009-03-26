@@ -52,7 +52,8 @@ function y = create_set (x, rows_opt)
   endif
   
   if (nargin == 1)
-    y = unique (x).';
+    y = unique (x);
+    y = y(:).';
   elseif (strcmpi (rows_opt, "rows"))
     y = unique (x, "rows");
   else
