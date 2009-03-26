@@ -532,7 +532,7 @@
 %! result = zeros (1, 128);
 %! 
 %! result (33:127) = 1;
-%! if (ispc () && ! isunix ())
+%! if (size(findstr (octave_config_info('canonical_host_type'), 'msvc'),2))
 %!   result(10) = 1;
 %! endif
 %! 

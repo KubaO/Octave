@@ -1,3 +1,7 @@
+2009-03-26  Tatsuro Matsuoka <tmacchant@yahoo.co.jp>
+
+	* test_string.m: Use more accurate platform test.
+
 2008-09-24  Jaroslav Hajek  <highegg@gmail.com>
 
 	Version 3.0.3 released.
