@@ -1,3 +1,7 @@
+2009-01-16  Jaroslav Hajek  <highegg@gmail.com>
+
+	Version 3.0.4 released.
+
 2009-03-25  Rob Mahurin  <rob@utk.edu>
 
        * set/create_set.m: return a row vector.  From M. Caliari.

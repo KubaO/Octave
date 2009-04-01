@@ -1,3 +1,7 @@
+2009-01-16  Jaroslav Hajek  <highegg@gmail.com>
+
+	Version 3.0.4 released.
+
 2009-02-05  Jaroslav Hajek  <highegg@gmail.com>
 
 	* oct-sort.cc (octave_sort<T>::merge_hi): std::copy ->
