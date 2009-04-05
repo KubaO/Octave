@@ -2,6 +2,12 @@
 
 	Version 3.0.4 released.
 
+2009-04-05  Benjamin Lindner <lindnerb@users.sourceforge.net>
+
+	* ls-mat-ascii.cc (get_mat_data_input_line): fix eating a whole
+	line when only newline should be read. fixes broken ascii matrix
+	loading
+
 2009-03-18  Benjamin Lindner <lindnerb@users.sourceforge.net>
 
 	* ls-oct-ascii.cc (extract_keyword): fix leaving stray '\r' in stream
