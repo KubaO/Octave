@@ -1,5 +1,10 @@
 2011-02-08  John W. Eaton  <jwe@octave.org>
 
+	* pr-output.cc (INSTANTIATE_ABS): Omit inline keyword from
+	template instantiation.  From Orion Poplawski <orion@cora.nwra.com>.
+
+2011-02-08  John W. Eaton  <jwe@octave.org>
+
 	* oct-parse.yy (parse_fcn_file): Don't warn about coercing
 	nested functions to subfunctions if yyparse failed.
 
